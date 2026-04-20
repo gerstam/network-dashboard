@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Systeminformationen — NOC Dashboard</title>
+</head>
+<body>
+<pre>
+ ╔══════════════════════════════════════════════════════════════════════════╗
+ ║                  NOC Dashboard — SYSTEMINFORMATIONEN                   ║
+ ╚══════════════════════════════════════════════════════════════════════════╝
+</pre>
+
+<h1>SYSTEMINFORMATIONEN</h1>
+<pre>  Datenquelle: {{ sysinfo.data_source | upper }}    Abgerufen: {{ sysinfo.timestamp[:19] }}</pre>
+
+<hr>
+<h2>BETRIEBSSYSTEM</h2>
+<hr>
+
+<pre>
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                                                                     │
+  │  Plattform:     {{ "%-52s" | format(sysinfo.os.system ~ " " ~ sysinfo.os.release) }}│
+  │  Version:       {{ "%-52s" | format(sysinfo.os.version[:52]) }}│
+  │  Hostname:      {{ "%-52s" | format(sysinfo.os.node_name) }}│
+  │  Architektur:   {{ "%-52s" | format(sysinfo.os.architecture ~ " (" ~ sysinfo.os.machine ~ ")") }}│
+  │  Prozessor:     {{ "%-52s" | format(sysinfo.os.processor[:52]) }}│
+  │  Python:        {{ "%-52s" | format(sysinfo.python.version) }}│
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<hr>
+<h2>PROZESSOR (CPU)</h2>
+<hr>
+
+<pre>
+  Physische Kerne: {{ sysinfo.cpu.physical_cores }}    Logische Kerne: {{ sysinfo.cpu.logical_cores }}
+  Frequenz:        {{ sysinfo.cpu.frequency_mhz.current }} MHz (Min: {{ sysinfo.cpu.frequency_mhz.min }}, Max: {{ sysinfo.cpu.frequency_mhz.max }})
+  Load Average:    {{ sysinfo.cpu.load_average | join('  ') }}
+
+  ┌── Gesamtauslastung ─────────────────────────────────────────────────┐
+  │                                                                     │
+  │  [{{ "█" * ((sysinfo.cpu.usage_percent // 2.5)|int) }}{{ "░" * (40 - (sysinfo.cpu.usage_percent // 2.5)|int) }}] {{ "%5.1f" | format(sysinfo.cpu.usage_percent) }}%  {% if sysinfo.cpu.status == 'normal' %}OK  {% elif sysinfo.cpu.status == 'warning' %}WARN{% else %}CRIT{% endif %}  │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  ┌── Auslastung pro Kern ──────────────────────────────────────────────┐
+  │                                                                     │
+  {% for core_pct in sysinfo.cpu.usage_per_core -%}
+  {% set bar_len = (core_pct // 2.5) | int -%}
+  │  Core {{ "%2d" | format(loop.index0) }}: [{{ "█" * bar_len }}{{ "░" * (40 - bar_len) }}] {{ "%5.1f" | format(core_pct) }}%       │
+  {% endfor -%}
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<hr>
+<h2>ARBEITSSPEICHER (RAM)</h2>
+<hr>
+
+<pre>
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                                                                     │
+  │  Gesamt:     {{ "%8s" | format(sysinfo.memory.total_gb ~ " GB") }}                                          │
+  │  Belegt:     {{ "%8s" | format(sysinfo.memory.used_gb ~ " GB") }}                                          │
+  │  Verfügbar:  {{ "%8s" | format(sysinfo.memory.available_gb ~ " GB") }}                                          │
+  │  Frei:       {{ "%8s" | format(sysinfo.memory.free_gb ~ " GB") }}                                          │
+  │                                                                     │
+  │  [{{ "█" * ((sysinfo.memory.usage_percent // 2.5)|int) }}{{ "░" * (40 - (sysinfo.memory.usage_percent // 2.5)|int) }}] {{ "%5.1f" | format(sysinfo.memory.usage_percent) }}%  {% if sysinfo.memory.status == 'normal' %}OK  {% elif sysinfo.memory.status == 'warning' %}WARN{% else %}CRIT{% endif %}  │
+  │                                                                     │
+  ├── Swap (Auslagerungsdatei) ─────────────────────────────────────────┤
+  │                                                                     │
+  │  Gesamt:     {{ "%8s" | format(sysinfo.memory.swap.total_gb ~ " GB") }}                                          │
+  │  Belegt:     {{ "%8s" | format(sysinfo.memory.swap.used_gb ~ " GB") }}                                          │
+  │  [{{ "█" * ((sysinfo.memory.swap.usage_percent // 2.5)|int) }}{{ "░" * (40 - (sysinfo.memory.swap.usage_percent // 2.5)|int) }}] {{ "%5.1f" | format(sysinfo.memory.swap.usage_percent) }}%        │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<hr>
+<h2>FESTPLATTEN</h2>
+<hr>
+
+<pre>
+  {% for part in sysinfo.disk.partitions -%}
+  ┌── {{ part.mountpoint }} ({{ part.fstype }}) {{ "─" * (52 - part.mountpoint|length - part.fstype|length) }}┐
+  │                                                                     │
+  │  Gesamt:     {{ "%8s" | format(part.total_gb ~ " GB") }}                                          │
+  │  Belegt:     {{ "%8s" | format(part.used_gb ~ " GB") }}                                          │
+  │  Frei:       {{ "%8s" | format(part.free_gb ~ " GB") }}                                          │
+  │                                                                     │
+  │  [{{ "█" * ((part.usage_percent // 2.5)|int) }}{{ "░" * (40 - (part.usage_percent // 2.5)|int) }}] {{ "%5.1f" | format(part.usage_percent) }}%  {% if sysinfo.disk.status == 'normal' %}OK  {% elif sysinfo.disk.status == 'warning' %}WARN{% else %}CRIT{% endif %}  │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+  {% endfor %}
+</pre>
+
+<hr>
+<h2>NETZWERK</h2>
+<hr>
+
+<pre>
+  {% for iface in sysinfo.network.interfaces -%}
+  ┌── {{ iface.name }} {{ "─" * (60 - iface.name|length) }}┐
+  │                                                                     │
+  │  Status:     {% if iface.is_up %}UP  {% else %}DOWN{% endif %}                                                    │
+  {% for addr in iface.addresses -%}
+  │  {{ "%-11s" | format(addr.type ~ ":") }} {{ "%-53s" | format(addr.address) }}│
+  {% endfor -%}
+  {% if iface.bytes_sent is defined -%}
+  │  Gesendet:   {{ "%-53s" | format(iface.bytes_sent | filesizeformat) }}│
+  │  Empfangen:  {{ "%-53s" | format(iface.bytes_recv | filesizeformat) }}│
+  {% endif -%}
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+  {% endfor %}
+</pre>
+
+<hr>
+<h2>SYSTEM-BETRIEBSZEIT</h2>
+<hr>
+
+<pre>
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                                                                     │
+  │    Betriebszeit:    {{ "%-47s" | format(sysinfo.uptime.formatted) }}│
+  │    Boot-Zeitpunkt:  {{ "%-47s" | format(sysinfo.uptime.boot_time[:19]) }}│
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<hr>
+<h2>AKTIONEN</h2>
+<hr>
+
+<pre>
+  [1] <a href="/text/sysinfo" accesskey="1">Aktualisieren</a>
+  [2] <a href="/text" accesskey="2">Zurück zum Dashboard</a>
+</pre>
+
+<hr>
+<pre>
+  NOC Dashboard v1.0.0  |  Text-Mode Interface
+</pre>
+</body>
+</html>

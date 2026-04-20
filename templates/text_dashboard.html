@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>NOC Dashboard — Network Operations Center</title>
+    <meta name="description" content="Network Operations Dashboard — Text Mode">
+</head>
+<body>
+<pre>
+ ╔══════════════════════════════════════════════════════════════════════════╗
+ ║                                                                        ║
+ ║    ███╗   ██╗ ██████╗  ██████╗    ██████╗  █████╗ ███████╗██╗  ██╗    ║
+ ║    ████╗  ██║██╔═══██╗██╔════╝    ██╔══██╗██╔══██╗██╔════╝██║  ██║    ║
+ ║    ██╔██╗ ██║██║   ██║██║         ██║  ██║███████║███████╗███████║    ║
+ ║    ██║╚██╗██║██║   ██║██║         ██║  ██║██╔══██║╚════██║██╔══██║    ║
+ ║    ██║ ╚████║╚██████╔╝╚██████╗    ██████╔╝██║  ██║███████║██║  ██║    ║
+ ║    ╚═╝  ╚═══╝ ╚═════╝  ╚═════╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ║
+ ║                                                                        ║
+ ║                   Network Operations Center v1.0.0                     ║
+ ║                         TEXT MODE INTERFACE                            ║
+ ║                                                                        ║
+ ╚══════════════════════════════════════════════════════════════════════════╝
+</pre>
+<pre>  Server Time: {{ now.strftime('%Y-%m-%d %H:%M:%S') }} ({{ now.strftime('%Z') or 'LOCAL' }})    |    Status: CONNECTED</pre>
+
+<hr>
+<h1>NETWORK HEALTH OVERVIEW</h1>
+<hr>
+
+<pre>
+  ┌─────────────────────────────────────────────────────────────────┐
+  │  STANDORTE GESAMT: {{ "%2d" | format(status_data.summary.total) }}    ONLINE: {{ "%2d" | format(status_data.summary.online) }}    OFFLINE: {{ "%2d" | format(status_data.summary.offline) }}          │
+  │                                                                 │
+  │  Health: [{{ "█" * (status_data.summary.health_percentage // 5)|int }}{{ "░" * (20 - (status_data.summary.health_percentage // 5)|int) }}] {{ "%5.1f" | format(status_data.summary.health_percentage) }}%        │
+  │                                                                 │
+  {% if status_data.summary.health_percentage >= 90 -%}
+  │  System Status: ✓ OPERATIONAL                                   │
+  {% elif status_data.summary.health_percentage >= 50 -%}
+  │  System Status: ⚠ DEGRADED                                     │
+  {% else -%}
+  │  System Status: ✗ CRITICAL                                      │
+  {% endif -%}
+  └─────────────────────────────────────────────────────────────────┘
+</pre>
+
+<hr>
+<h2>STANDORT-STATUS</h2>
+<hr>
+
+{% for loc_id, loc in status_data.locations.items() %}
+<pre>
+  {% if loc.status == 'online' -%}
+  ╔══[ {{ loc.name | upper }} ]══{{ "═" * (50 - loc.name|length) }}═══[  ONLINE ]══╗
+  {% else -%}
+  ╔══[ {{ loc.name | upper }} ]══{{ "═" * (50 - loc.name|length) }}══[ OFFLINE ]══╗
+  {% endif -%}
+  ║                                                                        ║
+  ║  Status:      {% if loc.status == 'online' %}[*] ONLINE  — Host erreichbar{% else %}[X] OFFLINE — Host nicht erreichbar{% endif %}{{ " " * (20 - (38 if loc.status == 'online' else 40) + 38) }}║
+  ║  IP-Adresse:  {{ "%-56s" | format(loc.ip_address) }}  ║
+  ║  Land:        {{ "%-56s" | format(loc.country ~ " (" ~ loc.country_code ~ ")") }}  ║
+  ║  Datacenter:  {{ "%-56s" | format(loc.datacenter) }}  ║
+  ║  Team:        {{ "%-56s" | format(loc.team) }}  ║
+  ║  Koordinaten: {{ "%-56s" | format("%.4f, %.4f" | format(loc.latitude, loc.longitude)) }}  ║
+  ║  Beschreibung:{{ "%-56s" | format(loc.description[:56]) }}  ║
+  ║                                                                        ║
+  ║  Uptime:      {{ "%-56s" | format(loc.uptime.formatted ~ " (" ~ loc.uptime.percentage ~ "% Verfügbarkeit)") }}  ║
+  {% if loc.last_ping -%}
+  ║  Letzer Ping: {{ "%-56s" | format(loc.last_ping.status ~ " — " ~ loc.last_ping.avg_ms|string ~ " ms avg") }}  ║
+  {% else -%}
+  ║  Letzer Ping: {{ "%-56s" | format("Noch kein Ping durchgeführt") }}  ║
+  {% endif -%}
+  ║                                                                        ║
+  ║  ── Services {{ "─" * 56 }}──║
+  ║                                                                        ║
+  {% for svc in loc.services -%}
+  ║    {% if svc.status == 'running' %}[*]{% else %}[X]{% endif %} {{ "%-20s" | format(svc.name) }} Port: {{ "%-6s" | format(svc.port|string) }} Status: {{ "%-12s" | format(svc.status | upper) }}     ║
+  {% endfor -%}
+  ║                                                                        ║
+  ║  Services aktiv: {{ loc.services | selectattr('status', 'equalto', 'running') | list | length }}/{{ loc.services | length }}{{ " " * 51 }}║
+  ║                                                                        ║
+  ╚════════════════════════════════════════════════════════════════════════╝
+</pre>
+{% endfor %}
+
+<hr>
+<h2>LOKALES SYSTEM</h2>
+<hr>
+
+{% if health_data %}
+<pre>
+  ┌── CPU ──────────────────────────────────────────────────────────┐
+  │                                                                 │
+  │  Auslastung: [{{ "█" * ((health_data.cpu.usage_percent // 5)|int) }}{{ "░" * (20 - (health_data.cpu.usage_percent // 5)|int) }}] {{ "%5.1f" | format(health_data.cpu.usage_percent) }}%  {% if health_data.cpu.status == 'normal' %}OK{% elif health_data.cpu.status == 'warning' %}WARN{% else %}CRIT{% endif %}      │
+  │  Kerne: {{ health_data.cpu.logical_cores }} logisch   Frequenz: {{ health_data.cpu.frequency_mhz.current }} MHz{{ " " * (20 - (health_data.cpu.frequency_mhz.current|string|length)) }}│
+  │                                                                 │
+  └─────────────────────────────────────────────────────────────────┘
+
+  ┌── RAM ──────────────────────────────────────────────────────────┐
+  │                                                                 │
+  │  Auslastung: [{{ "█" * ((health_data.memory.usage_percent // 5)|int) }}{{ "░" * (20 - (health_data.memory.usage_percent // 5)|int) }}] {{ "%5.1f" | format(health_data.memory.usage_percent) }}%  {% if health_data.memory.status == 'normal' %}OK{% elif health_data.memory.status == 'warning' %}WARN{% else %}CRIT{% endif %}      │
+  │  Belegt: {{ health_data.memory.used_gb }} GB / {{ health_data.memory.total_gb }} GB{{ " " * (34 - (health_data.memory.used_gb|string|length) - (health_data.memory.total_gb|string|length)) }}│
+  │                                                                 │
+  └─────────────────────────────────────────────────────────────────┘
+
+  ┌── DISK ─────────────────────────────────────────────────────────┐
+  │                                                                 │
+  {% if health_data.disk.partitions|length > 0 -%}
+  {% set d = health_data.disk.partitions[0] -%}
+  │  Auslastung: [{{ "█" * ((d.usage_percent // 5)|int) }}{{ "░" * (20 - (d.usage_percent // 5)|int) }}] {{ "%5.1f" | format(d.usage_percent) }}%  {% if health_data.disk.status == 'normal' %}OK{% elif health_data.disk.status == 'warning' %}WARN{% else %}CRIT{% endif %}      │
+  │  Mount: {{ d.mountpoint }}   Belegt: {{ d.used_gb }} GB / {{ d.total_gb }} GB{{ " " * (20 - (d.used_gb|string|length) - (d.total_gb|string|length)) }}│
+  {% else -%}
+  │  Keine Festplatteninformationen verfügbar                       │
+  {% endif -%}
+  │                                                                 │
+  └─────────────────────────────────────────────────────────────────┘
+
+  ┌── Betriebssystem ───────────────────────────────────────────────┐
+  │                                                                 │
+  │  Plattform:   {{ "%-50s" | format(health_data.os.system ~ " " ~ health_data.os.release) }}│
+  │  Hostname:    {{ "%-50s" | format(health_data.os.node_name) }}│
+  │  Architektur: {{ "%-50s" | format(health_data.os.architecture) }}│
+  │  Uptime:      {{ "%-50s" | format(health_data.uptime.formatted) }}│
+  │                                                                 │
+  └─────────────────────────────────────────────────────────────────┘
+</pre>
+{% else %}
+<pre>  [!] Systeminformationen konnten nicht geladen werden.</pre>
+{% endif %}
+
+<hr>
+<h2>AKTIONEN</h2>
+<hr>
+
+<pre>
+  Verfügbare Aktionen:
+
+  [1] <a href="/text/ping/frankfurt" accesskey="1">Ping Frankfurt ({{ locations.frankfurt.ip_address }})</a>
+  [2] <a href="/text/ping/wien" accesskey="2">Ping Wien ({{ locations.wien.ip_address }})</a>
+  [3] <a href="/text/sysinfo" accesskey="3">Systeminformationen anzeigen</a>
+  [4] <a href="/text" accesskey="4">Dashboard aktualisieren (Refresh)</a>
+
+  [G] <a href="/" accesskey="g">Graphisches Dashboard öffnen</a>
+
+  Tipp: Drücke [Zahl] um die Aktion direkt auszuführen (Accesskeys).
+</pre>
+
+{% if log_entries %}
+<hr>
+<h2>AKTIVITÄTS-LOG</h2>
+<hr>
+
+<pre>
+  ┌─────────────────────────┬──────────┬──────────────────────────────────────────┐
+  │ ZEITSTEMPEL             │ TYP      │ NACHRICHT                                │
+  ├─────────────────────────┼──────────┼──────────────────────────────────────────┤
+  {% for entry in log_entries[:15] -%}
+  │ {{ "%-23s" | format(entry.timestamp[:19]) }} │ {{ "%-8s" | format(entry.type) }} │ {{ "%-40s" | format(entry.message[:40]) }} │
+  {% endfor -%}
+  └─────────────────────────┴──────────┴──────────────────────────────────────────┘
+</pre>
+{% endif %}
+
+<hr>
+<pre>
+  ─────────────────────────────────────────────────────────────────────────
+   NOC Dashboard v1.0.0  |  (c) {{ current_year }} Network Operations Center
+   Verbindungsstatus: ONLINE  |  Letzes Update: {{ now.strftime('%H:%M:%S') }}
+   Text-Mode für Lynx / Terminal-Browser
+  ─────────────────────────────────────────────────────────────────────────
+</pre>
+</body>
+</html>

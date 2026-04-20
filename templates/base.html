@@ -1,0 +1,205 @@
+<!-- 
+================================================================================
+ BASE TEMPLATE - Network Operations Dashboard
+================================================================================
+ Datei:         templates/base.html
+ Beschreibung:  Basis-Template, von dem alle anderen Templates erben.
+                Definiert die HTML-Grundstruktur, Meta-Tags, CSS-Einbindungen
+                und JavaScript-Ladelogik. Verwendet Jinja2-Blöcke für
+                flexible Erweiterbarkeit.
+ Autor:         Network Dashboard Team
+ Erstellt:      2026-04-10
+ Version:       1.0.0
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <!-- ================================================================== -->
+    <!-- META-TAGS                                                          -->
+    <!-- ================================================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta-Tags -->
+    <meta name="description" content="Network Operations Dashboard - Echtzeit-Überwachung von Netzwerk-Standorten Frankfurt und Wien mit interaktiver Karte, Ping-Tests und Systeminformationen.">
+    <meta name="keywords" content="Network, Dashboard, Monitoring, Frankfurt, Wien, Ping, Status">
+    <meta name="author" content="Network Dashboard Team">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta-Tags -->
+    <meta property="og:title" content="{{ title | default('Network Operations Dashboard') }}">
+    <meta property="og:description" content="Echtzeit-Überwachung von Netzwerk-Standorten mit interaktiver Karte.">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+
+    <!-- Seitentitel -->
+    <title>{% block title %}{{ title | default('Network Operations Dashboard') }}{% endblock %}</title>
+
+    <!-- Text-browser fallback: redirect to text-mode if JavaScript is unavailable -->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/text">
+    </noscript>
+    <!-- Canonical link to text-mode for accessibility and text browsers -->
+    <link rel="alternate" href="/text" title="Text Mode Dashboard">
+
+    <!-- ================================================================== -->
+    <!-- EXTERNE CSS-BIBLIOTHEKEN                                           -->
+    <!-- ================================================================== -->
+
+    <!-- Google Fonts - Inter (moderne, professionelle Schriftart) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 - Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Leaflet CSS - Interaktive Karte -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+    <!-- ================================================================== -->
+    <!-- EIGENE CSS-DATEIEN                                                 -->
+    <!-- ================================================================== -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- ================================================================== -->
+    <!-- LADE-BILDSCHIRM (Splash Screen)                                    -->
+    <!-- ================================================================== -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="loading-globe">
+                    <i class="fas fa-globe-europe"></i>
+                </div>
+                <div class="loading-rings">
+                    <div class="loading-ring loading-ring-1"></div>
+                    <div class="loading-ring loading-ring-2"></div>
+                    <div class="loading-ring loading-ring-3"></div>
+                </div>
+            </div>
+            <h1 class="loading-title">Network Operations Dashboard</h1>
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="loading-bar"></div>
+            </div>
+            <p class="loading-text" id="loading-text">Systeme werden initialisiert...</p>
+        </div>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- HAUPT-CONTAINER                                                    -->
+    <!-- ================================================================== -->
+    <div id="app-container" class="app-container" style="opacity: 0;">
+
+        <!-- ============================================================== -->
+        <!-- NAVIGATION                                                     -->
+        <!-- ============================================================== -->
+        {% include 'components/navbar.html' %}
+
+        <!-- ============================================================== -->
+        <!-- HAUPTINHALT                                                    -->
+        <!-- ============================================================== -->
+        <main class="main-content" id="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- ============================================================== -->
+        <!-- FOOTER                                                         -->
+        <!-- ============================================================== -->
+        <footer class="dashboard-footer" id="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <span class="footer-logo">
+                        <i class="fas fa-shield-halved"></i>
+                        Network Operations Dashboard
+                    </span>
+                    <span class="footer-version">v1.0.0</span>
+                </div>
+                <div class="footer-center">
+                    <span class="footer-status" id="footer-connection-status">
+                        <span class="status-dot status-dot-online"></span>
+                        Verbunden
+                    </span>
+                    <span class="footer-separator">|</span>
+                    <span class="footer-update" id="footer-last-update">
+                        Letztes Update: --:--:--
+                    </span>
+                </div>
+                <div class="footer-right">
+                    <span class="footer-copyright">
+                        &copy; {{ current_year }} NOC Dashboard
+                    </span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- BENACHRICHTIGUNGEN                                                 -->
+    <!-- ================================================================== -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- ================================================================== -->
+    <!-- MODALE DIALOGE                                                     -->
+    <!-- ================================================================== -->
+    {% include 'components/modals.html' %}
+
+    <!-- ================================================================== -->
+    <!-- EXTERNE JAVASCRIPT-BIBLIOTHEKEN                                    -->
+    <!-- ================================================================== -->
+
+    <!-- Leaflet.js - Interaktive Karte -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- ================================================================== -->
+    <!-- EIGENE JAVASCRIPT-DATEIEN                                          -->
+    <!-- ================================================================== -->
+    <script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/notifications.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    {% block extra_js %}{% endblock %}
+
+    <!-- ================================================================== -->
+    <!-- BACKGROUND AUDIO                                                   -->
+    <!-- ================================================================== -->
+    <audio id="bg-audio" loop autoplay>
+        <source src="{{ url_for('static', filename='audio/background.mp3') }}" type="audio/mpeg">
+    </audio>
+    <script>
+        // Try to play audio automatically, browsers might block it until interaction
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('bg-audio');
+            if (audio) {
+                // Set volume slightly lower for background music
+                audio.volume = 0.2;
+                
+                // Attempt to play, handle the autoplay rejection if there's no interaction yet
+                let playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(_ => {
+                        // Autoplay was prevented. Play on first user interaction.
+                        document.body.addEventListener('click', function playOnInteraction() {
+                            audio.play();
+                            document.body.removeEventListener('click', playOnInteraction);
+                        }, { once: true });
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

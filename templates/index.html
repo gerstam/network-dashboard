@@ -1,0 +1,388 @@
+<!--
+================================================================================
+ HAUPTSEITE (INDEX) - Network Operations Dashboard
+================================================================================
+ Datei:         templates/index.html
+ Beschreibung:  Hauptseite des Dashboards. Enthält die interaktive Karte,
+                Status-Karten, Aktions-Buttons, Verbindungs-Log und
+                alle Dashboard-Widgets.
+ Autor:         Network Dashboard Team
+ Erstellt:      2026-04-10
+ Version:       1.0.0
+================================================================================
+-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ====================================================================== -->
+<!-- DASHBOARD-LAYOUT                                                       -->
+<!-- ====================================================================== -->
+<div class="dashboard-grid" id="dashboard-grid">
+
+    <!-- ================================================================== -->
+    <!-- LINKE SIDEBAR - Status-Karten                                      -->
+    <!-- ================================================================== -->
+    <aside class="dashboard-sidebar dashboard-sidebar-left" id="sidebar-left">
+
+        <!-- ============================================================== -->
+        <!-- NETZWERK-GESUNDHEIT WIDGET                                     -->
+        <!-- ============================================================== -->
+        <div class="dashboard-card card-health" id="card-network-health">
+            <div class="card-header">
+                <div class="card-header-left">
+                    <i class="fas fa-heartbeat card-icon"></i>
+                    <h3 class="card-title">Netzwerk-Gesundheit</h3>
+                </div>
+                <div class="card-header-right">
+                    <span class="card-badge" id="health-badge">OK</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Gesundheits-Anzeige (kreisförmig) -->
+                <div class="health-gauge-container">
+                    <div class="health-gauge" id="health-gauge">
+                        <svg viewBox="0 0 120 120" class="health-gauge-svg">
+                            <!-- Hintergrund-Ring -->
+                            <circle cx="60" cy="60" r="52" class="gauge-bg" />
+                            <!-- Fortschritts-Ring -->
+                            <circle cx="60" cy="60" r="52" class="gauge-progress" id="gauge-progress"
+                                    stroke-dasharray="326.73"
+                                    stroke-dashoffset="163.36" />
+                        </svg>
+                        <div class="health-gauge-text">
+                            <span class="gauge-value" id="gauge-value">50</span>
+                            <span class="gauge-unit">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status-Zusammenfassung -->
+                <div class="health-summary" id="health-summary">
+                    <div class="health-stat">
+                        <span class="health-stat-icon online"><i class="fas fa-circle"></i></span>
+                        <span class="health-stat-label">Online</span>
+                        <span class="health-stat-value" id="stat-online-count">1</span>
+                    </div>
+                    <div class="health-stat">
+                        <span class="health-stat-icon offline"><i class="fas fa-circle"></i></span>
+                        <span class="health-stat-label">Offline</span>
+                        <span class="health-stat-value" id="stat-offline-count">1</span>
+                    </div>
+                    <div class="health-stat">
+                        <span class="health-stat-icon total"><i class="fas fa-server"></i></span>
+                        <span class="health-stat-label">Gesamt</span>
+                        <span class="health-stat-value" id="stat-total-count">2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- FRANKFURT STATUS-KARTE                                         -->
+        <!-- ============================================================== -->
+        <div class="dashboard-card card-location card-online" id="card-frankfurt">
+            <div class="card-header">
+                <div class="card-header-left">
+                    <i class="fas fa-server card-icon card-icon-online"></i>
+                    <h3 class="card-title">Frankfurt</h3>
+                </div>
+                <div class="card-header-right">
+                    <span class="status-indicator status-online" id="status-indicator-frankfurt">
+                        <span class="status-pulse"></span>
+                        ONLINE
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="location-info">
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-flag"></i> Land</span>
+                        <span class="info-value">Deutschland <span class="flag-emoji">🇩🇪</span></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-users"></i> Team</span>
+                        <span class="info-value">Alpha Team</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-building"></i> Datacenter</span>
+                        <span class="info-value">Equinix FR5</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-network-wired"></i> IP</span>
+                        <span class="info-value font-mono">127.0.0.1</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-clock"></i> Uptime</span>
+                        <span class="info-value" id="frankfurt-uptime">--</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-tachometer-alt"></i> Latenz</span>
+                        <span class="info-value" id="frankfurt-latency">-- ms</span>
+                    </div>
+                </div>
+
+                <!-- Service-Status Mini-Anzeige -->
+                <div class="services-mini" id="frankfurt-services">
+                    <span class="services-label">Services:</span>
+                    <div class="services-dots">
+                        <span class="service-dot online" title="Web Server"></span>
+                        <span class="service-dot online" title="API Gateway"></span>
+                        <span class="service-dot online" title="Database"></span>
+                        <span class="service-dot online" title="Cache"></span>
+                        <span class="service-dot online" title="Message Queue"></span>
+                        <span class="service-dot online" title="Monitoring"></span>
+                    </div>
+                    <span class="services-count">6/6</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- WIEN STATUS-KARTE                                              -->
+        <!-- ============================================================== -->
+        <div class="dashboard-card card-location card-offline" id="card-wien">
+            <div class="card-header">
+                <div class="card-header-left">
+                    <i class="fas fa-building card-icon card-icon-offline"></i>
+                    <h3 class="card-title">Wien</h3>
+                </div>
+                <div class="card-header-right">
+                    <span class="status-indicator status-offline" id="status-indicator-wien">
+                        OFFLINE
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="location-info">
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-flag"></i> Land</span>
+                        <span class="info-value">Österreich <span class="flag-emoji">🇦🇹</span></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-users"></i> Team</span>
+                        <span class="info-value">Beta Team</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-building"></i> Datacenter</span>
+                        <span class="info-value">Interxion VIE1</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-network-wired"></i> IP</span>
+                        <span class="info-value font-mono">10.0.0.50</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-clock"></i> Uptime</span>
+                        <span class="info-value" id="wien-uptime">Nicht verfügbar</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label"><i class="fas fa-tachometer-alt"></i> Latenz</span>
+                        <span class="info-value" id="wien-latency">Timeout</span>
+                    </div>
+                </div>
+
+                <!-- Service-Status Mini-Anzeige -->
+                <div class="services-mini" id="wien-services">
+                    <span class="services-label">Services:</span>
+                    <div class="services-dots">
+                        <span class="service-dot offline" title="Web Server"></span>
+                        <span class="service-dot offline" title="API Gateway"></span>
+                        <span class="service-dot offline" title="Database"></span>
+                        <span class="service-dot offline" title="Cache"></span>
+                        <span class="service-dot offline" title="Message Queue"></span>
+                        <span class="service-dot offline" title="Monitoring"></span>
+                    </div>
+                    <span class="services-count">0/6</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================================================================== -->
+    <!-- ZENTRALER BEREICH - Karte                                          -->
+    <!-- ================================================================== -->
+    <section class="dashboard-main" id="dashboard-main">
+
+        <!-- Karten-Container -->
+        <div class="map-wrapper" id="map-wrapper">
+            <!-- Karten-Toolbar -->
+            <div class="map-toolbar" id="map-toolbar">
+                <div class="map-toolbar-left">
+                    <h2 class="map-title">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Netzwerk-Übersicht
+                    </h2>
+                </div>
+                <div class="map-toolbar-right">
+                    <button class="map-btn" id="btn-map-fit" title="Alle Standorte anzeigen">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                    <button class="map-btn" id="btn-map-frankfurt" title="Zu Frankfurt springen">
+                        <span class="map-btn-dot online"></span> FFM
+                    </button>
+                    <button class="map-btn" id="btn-map-wien" title="Zu Wien springen">
+                        <span class="map-btn-dot offline"></span> VIE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Leaflet Karten-Element -->
+            <div class="map-container" id="map-container">
+                <div id="map" class="leaflet-map"></div>
+            </div>
+
+            <!-- Karten-Legende -->
+            <div class="map-legend" id="map-legend">
+                <div class="legend-item">
+                    <span class="legend-dot legend-dot-online">
+                        <span class="legend-dot-pulse"></span>
+                    </span>
+                    <span class="legend-label">Online</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot legend-dot-offline"></span>
+                    <span class="legend-label">Offline</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- AKTIONS-BUTTONS                                                -->
+        <!-- ============================================================== -->
+        <div class="actions-bar" id="actions-bar">
+            <div class="actions-group">
+                <!-- Ping Frankfurt Button -->
+                <button class="btn btn-action btn-ping-online" id="btn-ping-frankfurt" title="Ping an Frankfurt senden">
+                    <div class="btn-icon-wrapper">
+                        <i class="fas fa-satellite-dish"></i>
+                        <span class="btn-ping-wave"></span>
+                    </div>
+                    <div class="btn-text-wrapper">
+                        <span class="btn-main-text">Ping Frankfurt</span>
+                        <span class="btn-sub-text">127.0.0.1</span>
+                    </div>
+                </button>
+
+                <!-- Ping Wien Button -->
+                <button class="btn btn-action btn-ping-offline" id="btn-ping-wien" title="Ping an Wien senden">
+                    <div class="btn-icon-wrapper">
+                        <i class="fas fa-satellite-dish"></i>
+                    </div>
+                    <div class="btn-text-wrapper">
+                        <span class="btn-main-text">Ping Wien</span>
+                        <span class="btn-sub-text">10.0.0.50</span>
+                    </div>
+                </button>
+
+                <!-- Status-Aktualisierung Button -->
+                <button class="btn btn-action btn-refresh" id="btn-refresh-status" title="Status aller Standorte aktualisieren">
+                    <div class="btn-icon-wrapper">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="btn-text-wrapper">
+                        <span class="btn-main-text">Status aktualisieren</span>
+                        <span class="btn-sub-text">Alle Standorte</span>
+                    </div>
+                </button>
+
+                <!-- Systeminfo Button -->
+                <button class="btn btn-action btn-sysinfo" id="btn-show-sysinfo" title="Systeminformationen anzeigen">
+                    <div class="btn-icon-wrapper">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="btn-text-wrapper">
+                        <span class="btn-main-text">Systeminfos anzeigen</span>
+                        <span class="btn-sub-text">CPU, RAM, OS</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- RECHTE SIDEBAR - Logs und Aktivitäten                              -->
+    <!-- ================================================================== -->
+    <aside class="dashboard-sidebar dashboard-sidebar-right" id="sidebar-right">
+
+        <!-- ============================================================== -->
+        <!-- SYSTEM-HEALTH WIDGET                                           -->
+        <!-- ============================================================== -->
+        <div class="dashboard-card card-system-health" id="card-system-health">
+            <div class="card-header">
+                <div class="card-header-left">
+                    <i class="fas fa-microchip card-icon"></i>
+                    <h3 class="card-title">Lokales System</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- CPU-Anzeige -->
+                <div class="system-metric" id="metric-cpu">
+                    <div class="metric-header">
+                        <span class="metric-label"><i class="fas fa-microchip"></i> CPU</span>
+                        <span class="metric-value" id="metric-cpu-value">--%</span>
+                    </div>
+                    <div class="metric-bar">
+                        <div class="metric-bar-fill" id="metric-cpu-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- RAM-Anzeige -->
+                <div class="system-metric" id="metric-ram">
+                    <div class="metric-header">
+                        <span class="metric-label"><i class="fas fa-memory"></i> RAM</span>
+                        <span class="metric-value" id="metric-ram-value">--%</span>
+                    </div>
+                    <div class="metric-bar">
+                        <div class="metric-bar-fill" id="metric-ram-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Festplatten-Anzeige -->
+                <div class="system-metric" id="metric-disk">
+                    <div class="metric-header">
+                        <span class="metric-label"><i class="fas fa-hard-drive"></i> Disk</span>
+                        <span class="metric-value" id="metric-disk-value">--%</span>
+                    </div>
+                    <div class="metric-bar">
+                        <div class="metric-bar-fill" id="metric-disk-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Betriebszeit -->
+                <div class="system-uptime">
+                    <span class="uptime-label"><i class="fas fa-clock"></i> Uptime</span>
+                    <span class="uptime-value" id="system-uptime-value">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- VERBINDUNGS-LOG                                                -->
+        <!-- ============================================================== -->
+        <div class="dashboard-card card-log" id="card-connection-log">
+            <div class="card-header">
+                <div class="card-header-left">
+                    <i class="fas fa-terminal card-icon"></i>
+                    <h3 class="card-title">Aktivitäts-Log</h3>
+                </div>
+                <div class="card-header-right">
+                    <button class="card-btn" id="btn-clear-log" title="Log leeren">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body card-body-log">
+                <div class="log-container" id="log-container">
+                    <div class="log-entry log-entry-info">
+                        <span class="log-time">--:--:--</span>
+                        <span class="log-icon"><i class="fas fa-info-circle"></i></span>
+                        <span class="log-message">Dashboard wird initialisiert...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Ping-Ergebnis: {{ location_name }} — NOC Dashboard</title>
+</head>
+<body>
+<pre>
+ ╔══════════════════════════════════════════════════════════════════════════╗
+ ║                    NOC Dashboard — PING ERGEBNIS                       ║
+ ╚══════════════════════════════════════════════════════════════════════════╝
+</pre>
+
+<h1>PING: {{ location_name | upper }}</h1>
+
+<pre>
+  Host:     {{ ping_result.host }}
+  Standort: {{ location_name }}
+  Methode:  {{ ping_result.method | upper }}
+  Zeit:     {{ ping_result.timestamp[:19] }}
+</pre>
+
+<hr>
+<h2>ERGEBNIS</h2>
+<hr>
+
+{% if ping_result.status == 'success' %}
+<pre>
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                                                                 │
+  │   [*] PING ERFOLGREICH — Host erreichbar                       │
+  │                                                                 │
+  │   Pakete gesendet:   {{ "%4d" | format(ping_result.packets_sent) }}                                       │
+  │   Pakete empfangen:  {{ "%4d" | format(ping_result.packets_received) }}                                       │
+  │   Paketverlust:      {{ "%5.1f" | format(ping_result.packet_loss) }}%                                     │
+  │   TTL:               {{ "%4d" | format(ping_result.ttl) }}                                       │
+  │                                                                 │
+  ├── Latenz ────────────────────────────────────────────────────────┤
+  │                                                                 │
+  │   Minimum:           {{ "%8.2f" | format(ping_result.min_ms) }} ms                                │
+  │   Maximum:           {{ "%8.2f" | format(ping_result.max_ms) }} ms                                │
+  │   Durchschnitt:      {{ "%8.2f" | format(ping_result.avg_ms) }} ms                                │
+  │   Jitter:            {{ "%8.2f" | format(ping_result.jitter_ms) }} ms                                │
+  │                                                                 │
+  └─────────────────────────────────────────────────────────────────┘
+</pre>
+
+{% if ping_result.latencies %}
+<h3>Einzelne Ping-Antworten</h3>
+<pre>
+  ┌───────┬────────────┬──────────────────────────────────────────────┐
+  │   #   │  Latenz    │  Visualisierung                             │
+  ├───────┼────────────┼──────────────────────────────────────────────┤
+  {% for lat in ping_result.latencies -%}
+  {% set bar_len = (lat / (ping_result.max_ms if ping_result.max_ms > 0 else 1) * 40) | int -%}
+  │  {{ "%3d" | format(loop.index) }}  │ {{ "%7.2f" | format(lat) }} ms │  {{ "█" * bar_len }}{{ " " * (40 - bar_len) }}  │
+  {% endfor -%}
+  └───────┴────────────┴──────────────────────────────────────────────┘
+</pre>
+{% endif %}
+
+{% elif ping_result.status == 'timeout' %}
+<pre>
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                                                                 │
+  │   [X] TIMEOUT — Host nicht erreichbar                          │
+  │                                                                 │
+  │   Pakete gesendet:   {{ "%4d" | format(ping_result.packets_sent) }}                                       │
+  │   Pakete empfangen:  {{ "%4d" | format(ping_result.packets_received) }}                                       │
+  │   Paketverlust:      {{ "%5.1f" | format(ping_result.packet_loss) }}%                                     │
+  │                                                                 │
+  │   Fehlermeldung:                                                 │
+  │   {{ "%-61s" | format(ping_result.get('error_message', 'Zeitüberschreitung')[:61]) }} │
+  │                                                                 │
+  └─────────────────────────────────────────────────────────────────┘
+</pre>
+
+{% else %}
+<pre>
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                                                                 │
+  │   [!] FEHLER beim Ping                                          │
+  │                                                                 │
+  │   {{ "%-61s" | format(ping_result.get('error_message', 'Unbekannter Fehler')[:61]) }} │
+  │                                                                 │
+  └─────────────────────────────────────────────────────────────────┘
+</pre>
+{% endif %}
+
+<hr>
+<h2>AKTIONEN</h2>
+<hr>
+
+<pre>
+  [1] <a href="/text/ping/{{ ping_result.location }}" accesskey="1">Erneut pingen</a>
+  [2] <a href="/text" accesskey="2">Zurück zum Dashboard</a>
+  {% if ping_result.location == 'frankfurt' -%}
+  [3] <a href="/text/ping/wien" accesskey="3">Wien pingen</a>
+  {% else -%}
+  [3] <a href="/text/ping/frankfurt" accesskey="3">Frankfurt pingen</a>
+  {% endif %}
+</pre>
+
+<hr>
+<pre>
+  NOC Dashboard v1.0.0  |  Text-Mode Interface
+</pre>
+</body>
+</html>

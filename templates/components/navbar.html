@@ -1,0 +1,104 @@
+<!--
+================================================================================
+ NAVIGATIONSLEISTE - Network Operations Dashboard
+================================================================================
+ Datei:         templates/components/navbar.html
+ Beschreibung:  Obere Navigationsleiste mit Logo, Status-Indikatoren,
+                Uhrzeit-Anzeige und Schnellzugriffs-Buttons.
+ Autor:         Network Dashboard Team
+ Erstellt:      2026-04-10
+ Version:       1.0.0
+================================================================================
+-->
+
+<!-- ====================================================================== -->
+<!-- NAVIGATIONSLEISTE                                                      -->
+<!-- ====================================================================== -->
+<nav class="navbar" id="navbar">
+    <div class="navbar-content">
+
+        <!-- ============================================================== -->
+        <!-- LINKER BEREICH - Logo und Titel                                -->
+        <!-- ============================================================== -->
+        <div class="navbar-left">
+            <!-- Dashboard-Logo mit animiertem Icon -->
+            <div class="navbar-logo" id="navbar-logo">
+                <div class="logo-icon-wrapper">
+                    <i class="fas fa-network-wired logo-icon"></i>
+                    <div class="logo-pulse"></div>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">NOC Dashboard</span>
+                    <span class="logo-subtitle">Network Operations Center</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- MITTLERER BEREICH - Status-Indikatoren                         -->
+        <!-- ============================================================== -->
+        <div class="navbar-center">
+            <!-- Standort-Status-Badges -->
+            <div class="navbar-status-badges" id="navbar-status-badges">
+
+                <!-- Frankfurt Status Badge -->
+                <div class="status-badge status-badge-online" id="navbar-badge-frankfurt" title="Frankfurt am Main - Online">
+                    <span class="badge-dot badge-dot-online">
+                        <span class="badge-dot-pulse"></span>
+                    </span>
+                    <span class="badge-icon"><i class="fas fa-server"></i></span>
+                    <span class="badge-label">Frankfurt</span>
+                    <span class="badge-status">ONLINE</span>
+                </div>
+
+                <!-- Verbindungslinie zwischen den Badges -->
+                <div class="connection-line" id="connection-line">
+                    <div class="connection-line-inner">
+                        <div class="connection-dots">
+                            <span class="connection-dot cd-1"></span>
+                            <span class="connection-dot cd-2"></span>
+                            <span class="connection-dot cd-3"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wien Status Badge -->
+                <div class="status-badge status-badge-offline" id="navbar-badge-wien" title="Wien - Offline">
+                    <span class="badge-dot badge-dot-offline"></span>
+                    <span class="badge-icon"><i class="fas fa-building"></i></span>
+                    <span class="badge-label">Wien</span>
+                    <span class="badge-status">OFFLINE</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- RECHTER BEREICH - Uhr und Aktionen                             -->
+        <!-- ============================================================== -->
+        <div class="navbar-right">
+            <!-- Live-Uhr -->
+            <div class="navbar-clock" id="navbar-clock">
+                <i class="fas fa-clock clock-icon"></i>
+                <span class="clock-time" id="clock-time">00:00:00</span>
+                <span class="clock-date" id="clock-date">01.01.2026</span>
+            </div>
+
+            <!-- Auto-Refresh Toggle -->
+            <button class="navbar-btn" id="btn-auto-refresh" title="Auto-Refresh umschalten">
+                <i class="fas fa-sync-alt"></i>
+                <span class="btn-label">Auto</span>
+                <span class="auto-refresh-indicator active" id="auto-refresh-indicator"></span>
+            </button>
+
+            <!-- Vollbild-Button -->
+            <button class="navbar-btn" id="btn-fullscreen" title="Vollbild umschalten">
+                <i class="fas fa-expand"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Fortschrittsbalken für Auto-Refresh -->
+    <div class="navbar-progress" id="navbar-progress">
+        <div class="navbar-progress-bar" id="navbar-progress-bar"></div>
+    </div>
+</nav>

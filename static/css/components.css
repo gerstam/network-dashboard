@@ -1,0 +1,1123 @@
+/*
+================================================================================
+ KOMPONENTEN-STYLES - Network Operations Dashboard
+================================================================================
+ Datei:         static/css/components.css
+ Beschreibung:  Styles für wiederverwendbare UI-Komponenten wie Buttons,
+                Modals, Benachrichtigungen, Spinner und Formulare.
+ Autor:         Network Dashboard Team
+ Erstellt:      2026-04-10
+ Version:       1.0.0
+================================================================================
+*/
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+
+/* --- Basis-Button --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-base);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: none;
+    user-select: none;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Ripple-Effekt für Buttons */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* --- Button-Varianten --- */
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+    transform: translateY(-1px);
+}
+
+/* Ghost Button */
+.btn-ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+}
+
+.btn-ghost:hover {
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-hover);
+}
+
+/* --- Aktions-Buttons (Hauptseite) --- */
+.actions-bar {
+    padding: var(--space-md) var(--space-base);
+    background: var(--color-glass);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--color-border);
+}
+
+.actions-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+}
+
+.btn-action {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-base);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+}
+
+.btn-action::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.02));
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-action:hover::before {
+    opacity: 1;
+}
+
+.btn-action:active {
+    transform: translateY(0);
+}
+
+/* Button Icon Wrapper */
+.btn-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.btn-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.btn-main-text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    line-height: 1.2;
+}
+
+.btn-sub-text {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    font-weight: var(--font-weight-normal);
+    font-family: var(--font-mono);
+}
+
+/* --- Ping Online Button --- */
+.btn-ping-online .btn-icon-wrapper {
+    background: var(--color-online-bg);
+    color: var(--color-online);
+    border: 1px solid var(--color-online-border);
+}
+
+.btn-ping-online:hover {
+    border-color: var(--color-online-border);
+    box-shadow: 0 4px 20px var(--color-online-glow);
+}
+
+/* Ping Wave Effekt */
+.btn-ping-wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-online);
+    opacity: 0;
+    animation: pingBtnWave 3s ease-out infinite;
+}
+
+@keyframes pingBtnWave {
+    0% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.8); }
+}
+
+/* --- Ping Offline Button --- */
+.btn-ping-offline .btn-icon-wrapper {
+    background: var(--color-offline-bg);
+    color: var(--color-offline);
+    border: 1px solid var(--color-offline-border);
+}
+
+.btn-ping-offline:hover {
+    border-color: var(--color-offline-border);
+    box-shadow: 0 4px 20px var(--color-offline-glow);
+}
+
+/* --- Refresh Button --- */
+.btn-refresh .btn-icon-wrapper {
+    background: var(--color-info-bg);
+    color: var(--color-info);
+    border: 1px solid var(--color-info-border);
+}
+
+.btn-refresh:hover {
+    border-color: var(--color-info-border);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+}
+
+.btn-refresh.loading .btn-icon-wrapper i {
+    animation: spinBtn 1s linear infinite;
+}
+
+@keyframes spinBtn {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* --- Sysinfo Button --- */
+.btn-sysinfo .btn-icon-wrapper {
+    background: var(--color-accent-glow);
+    color: var(--color-accent-primary);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.btn-sysinfo:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 20px var(--color-accent-glow);
+}
+
+
+/* ============================================================================
+   MODAL-DIALOGE
+   ============================================================================ */
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: var(--z-modal-bg);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Container */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    padding: var(--space-xl);
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Dialog */
+.modal-dialog {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.95) translateY(10px);
+    transition: transform var(--transition-base);
+}
+
+.modal.active .modal-dialog {
+    transform: scale(1) translateY(0);
+}
+
+/* Modal Größen */
+.modal-md {
+    max-width: 550px;
+}
+
+.modal-lg {
+    max-width: 750px;
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg) var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-glass-highlight);
+}
+
+.modal-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.modal-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background: var(--color-accent-glow);
+    color: var(--color-accent-primary);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    flex-shrink: 0;
+}
+
+.modal-icon-ping {
+    background: var(--color-info-bg);
+    color: var(--color-info);
+    border: 1px solid var(--color-info-border);
+}
+
+.modal-icon-location {
+    background: var(--color-online-bg);
+    color: var(--color-online);
+    border: 1px solid var(--color-online-border);
+}
+
+.modal-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.modal-subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    margin: 0;
+    margin-top: 2px;
+}
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-tertiary);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-hover);
+}
+
+/* Modal Body */
+.modal-body {
+    padding: var(--space-xl);
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Modal Footer */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    padding: var(--space-base) var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    background: var(--color-glass-highlight);
+}
+
+
+/* ============================================================================
+   MODAL LOADING / SPINNER
+   ============================================================================ */
+
+.modal-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3xl) 0;
+    gap: var(--space-base);
+}
+
+.spinner-container {
+    position: relative;
+    width: 48px;
+    height: 48px;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--color-bg-elevated);
+    border-top-color: var(--color-accent-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.modal-loading p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+}
+
+
+/* ============================================================================
+   SYSTEMINFORMATIONEN (Modal-Inhalt)
+   ============================================================================ */
+
+.sysinfo-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.sysinfo-section {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-base);
+}
+
+.sysinfo-section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-base);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.sysinfo-section-header i {
+    color: var(--color-accent-primary);
+    font-size: 14px;
+}
+
+.sysinfo-section-header h3 {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+/* Sysinfo Grid (für OS-Info etc.) */
+.sysinfo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+}
+
+.sysinfo-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-sm);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.sysinfo-item-label {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: var(--font-weight-semibold);
+}
+
+.sysinfo-item-value {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    word-break: break-all;
+}
+
+/* CPU Cores Anzeige */
+.sysinfo-cores {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.sysinfo-core {
+    padding: var(--space-sm);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.sysinfo-core-label {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    margin-bottom: 4px;
+}
+
+.sysinfo-core-bar {
+    height: 4px;
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.sysinfo-core-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-online));
+    transition: width 0.5s ease;
+}
+
+.sysinfo-core-value {
+    font-size: 11px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+}
+
+/* Memory / Disk großer Balken */
+.sysinfo-big-bar {
+    margin-bottom: var(--space-base);
+}
+
+.sysinfo-big-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+
+.sysinfo-big-bar-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+}
+
+.sysinfo-big-bar-value {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-mono);
+    color: var(--color-text-primary);
+}
+
+.sysinfo-bar-track {
+    height: 10px;
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.sysinfo-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 1s ease;
+    position: relative;
+}
+
+.sysinfo-bar-fill.normal {
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-online));
+}
+
+.sysinfo-bar-fill.warning {
+    background: linear-gradient(90deg, var(--color-warning), #ef4444);
+}
+
+.sysinfo-bar-fill.critical {
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+/* Sysinfo Detail-Grid */
+.sysinfo-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+
+/* ============================================================================
+   PING-ERGEBNIS (Modal-Inhalt)
+   ============================================================================ */
+
+/* Ping Loading Animation */
+.ping-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xl);
+    padding: var(--space-2xl) 0;
+}
+
+.ping-animation {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.ping-wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid var(--color-accent-primary);
+    opacity: 0;
+}
+
+.ping-wave-1 {
+    width: 20px;
+    height: 20px;
+    animation: pingWave 1.5s ease-out infinite;
+}
+
+.ping-wave-2 {
+    width: 20px;
+    height: 20px;
+    animation: pingWave 1.5s ease-out infinite 0.5s;
+}
+
+.ping-wave-3 {
+    width: 20px;
+    height: 20px;
+    animation: pingWave 1.5s ease-out infinite 1s;
+}
+
+.ping-center-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: var(--color-accent-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--color-accent-glow);
+}
+
+@keyframes pingWave {
+    0% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(4);
+    }
+}
+
+.ping-loading-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Ping Status Display */
+.ping-status-display {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.ping-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-xl);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.ping-status-badge.success {
+    background: var(--color-online-bg);
+    color: var(--color-online);
+    border: 1px solid var(--color-online-border);
+}
+
+.ping-status-badge.timeout {
+    background: var(--color-offline-bg);
+    color: var(--color-offline);
+    border: 1px solid var(--color-offline-border);
+}
+
+.ping-status-badge.error {
+    background: var(--color-warning-bg);
+    color: var(--color-warning);
+    border: 1px solid var(--color-warning-border);
+}
+
+.ping-status-badge i {
+    font-size: 14px;
+}
+
+/* Ping Stats Grid */
+.ping-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+}
+
+.ping-stat {
+    text-align: center;
+    padding: var(--space-base);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.ping-stat-label {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 6px;
+}
+
+.ping-stat-value {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    font-family: var(--font-mono);
+}
+
+.ping-stat-unit {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    margin-left: 2px;
+}
+
+/* Ping Latenz-Balken */
+.ping-latency-bars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.ping-latency-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.ping-latency-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    min-width: 60px;
+    font-weight: var(--font-weight-medium);
+}
+
+.ping-latency-bar-wrapper {
+    flex: 1;
+    height: 8px;
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.ping-latency-bar {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-online));
+    transition: width 0.8s ease;
+}
+
+.ping-latency-value {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    min-width: 55px;
+    text-align: right;
+}
+
+
+/* ============================================================================
+   BENACHRICHTIGUNGEN (Toasts)
+   ============================================================================ */
+
+.notification-container {
+    position: fixed;
+    top: calc(var(--navbar-height) + var(--space-base));
+    right: var(--space-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    z-index: var(--z-notification);
+    max-width: 380px;
+    width: 100%;
+    pointer-events: none;
+}
+
+.notification {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-base) var(--space-lg);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(20px);
+    pointer-events: auto;
+    animation: notificationSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+    position: relative;
+}
+
+.notification.removing {
+    animation: notificationSlideOut 0.3s ease forwards;
+}
+
+.notification::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+}
+
+.notification-success::before { background: var(--color-online); }
+.notification-error::before { background: var(--color-offline); }
+.notification-warning::before { background: var(--color-warning); }
+.notification-info::before { background: var(--color-info); }
+
+.notification-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.notification-success .notification-icon {
+    background: var(--color-online-bg);
+    color: var(--color-online);
+}
+
+.notification-error .notification-icon {
+    background: var(--color-offline-bg);
+    color: var(--color-offline);
+}
+
+.notification-warning .notification-icon {
+    background: var(--color-warning-bg);
+    color: var(--color-warning);
+}
+
+.notification-info .notification-icon {
+    background: var(--color-info-bg);
+    color: var(--color-info);
+}
+
+.notification-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.notification-message {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    line-height: 1.4;
+}
+
+.notification-close {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 4px;
+    font-size: 12px;
+    transition: color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.notification-close:hover {
+    color: var(--color-text-primary);
+}
+
+/* Notification Progress Bar */
+.notification-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--color-accent-primary);
+    transition: width linear;
+}
+
+@keyframes notificationSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes notificationSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100px) scale(0.95);
+    }
+}
+
+
+/* ============================================================================
+   STANDORT-DETAIL (Modal-Inhalt)
+   ============================================================================ */
+
+.location-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.location-detail-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-base);
+    padding: var(--space-base);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+}
+
+.location-detail-status-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.location-detail-status-icon.online {
+    background: var(--color-online-bg);
+    color: var(--color-online);
+    border: 1px solid var(--color-online-border);
+}
+
+.location-detail-status-icon.offline {
+    background: var(--color-offline-bg);
+    color: var(--color-offline);
+    border: 1px solid var(--color-offline-border);
+}
+
+.location-detail-info h3 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 4px;
+}
+
+.location-detail-info p {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+}
+
+.location-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+}
+
+.location-detail-item {
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.location-detail-item-label {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 4px;
+}
+
+.location-detail-item-value {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Services List im Detail-Modal */
+.location-services-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.location-service-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.location-service-name {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.location-service-port {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+}
+
+.location-service-status {
+    font-size: 10px;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+}
+
+.location-service-status.running {
+    background: var(--color-online-bg);
+    color: var(--color-online);
+    border: 1px solid var(--color-online-border);
+}
+
+.location-service-status.stopped {
+    background: var(--color-offline-bg);
+    color: var(--color-offline);
+    border: 1px solid var(--color-offline-border);
+}

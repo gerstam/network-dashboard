@@ -1,0 +1,476 @@
+/*
+================================================================================
+ HAUPT-STYLESHEET - Network Operations Dashboard
+================================================================================
+ Datei:         static/css/main.css
+ Beschreibung:  Definiert das grundlegende Design-System der Anwendung.
+                Enthält CSS-Custom-Properties (Variablen), Reset-Styles,
+                Typografie-Einstellungen und grundlegende Layout-Regeln.
+ Autor:         Network Dashboard Team
+ Erstellt:      2026-04-10
+ Version:       1.0.0
+================================================================================
+*/
+
+/* ============================================================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================================================
+   Alle Farben, Abstände, Schriften und andere Design-Werte werden hier
+   zentral definiert. Dies ermöglicht einfache Anpassungen und Theme-Wechsel.
+   ============================================================================ */
+
+:root {
+    /* ---------------------------------------------------------------------- */
+    /* FARBPALETTE - Dark Theme                                               */
+    /* ---------------------------------------------------------------------- */
+
+    /* Hauptfarben */
+    --color-bg-primary:        #0a0e17;
+    --color-bg-secondary:      #111827;
+    --color-bg-tertiary:       #1a2332;
+    --color-bg-card:           #151d2e;
+    --color-bg-card-hover:     #1a2540;
+    --color-bg-elevated:       #1e293b;
+    --color-bg-overlay:        rgba(0, 0, 0, 0.7);
+
+    /* Glasmorphismus */
+    --color-glass:             rgba(17, 24, 39, 0.85);
+    --color-glass-border:      rgba(255, 255, 255, 0.08);
+    --color-glass-highlight:   rgba(255, 255, 255, 0.04);
+
+    /* Textfarben */
+    --color-text-primary:      #f1f5f9;
+    --color-text-secondary:    #94a3b8;
+    --color-text-tertiary:     #64748b;
+    --color-text-muted:        #475569;
+    --color-text-inverse:      #0f172a;
+
+    /* Akzentfarben */
+    --color-accent-primary:    #6366f1;
+    --color-accent-primary-hover: #818cf8;
+    --color-accent-secondary:  #8b5cf6;
+    --color-accent-glow:       rgba(99, 102, 241, 0.3);
+
+    /* Status-Farben */
+    --color-online:            #00ff88;
+    --color-online-bg:         rgba(0, 255, 136, 0.1);
+    --color-online-border:     rgba(0, 255, 136, 0.25);
+    --color-online-glow:       rgba(0, 255, 136, 0.4);
+    --color-online-text:       #00ff88;
+
+    --color-offline:           #ff4455;
+    --color-offline-bg:        rgba(255, 68, 85, 0.1);
+    --color-offline-border:    rgba(255, 68, 85, 0.25);
+    --color-offline-glow:      rgba(255, 68, 85, 0.3);
+    --color-offline-text:      #ff4455;
+
+    --color-warning:           #f59e0b;
+    --color-warning-bg:        rgba(245, 158, 11, 0.1);
+    --color-warning-border:    rgba(245, 158, 11, 0.25);
+
+    --color-info:              #3b82f6;
+    --color-info-bg:           rgba(59, 130, 246, 0.1);
+    --color-info-border:       rgba(59, 130, 246, 0.25);
+
+    /* Rahmenfarben */
+    --color-border:            rgba(255, 255, 255, 0.06);
+    --color-border-hover:      rgba(255, 255, 255, 0.12);
+    --color-border-active:     rgba(99, 102, 241, 0.5);
+
+    /* ---------------------------------------------------------------------- */
+    /* TYPOGRAFIE                                                             */
+    /* ---------------------------------------------------------------------- */
+    --font-primary:            'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono:               'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+    --font-size-xs:            0.7rem;
+    --font-size-sm:            0.8rem;
+    --font-size-base:          0.9rem;
+    --font-size-md:            1rem;
+    --font-size-lg:            1.15rem;
+    --font-size-xl:            1.35rem;
+    --font-size-2xl:           1.75rem;
+    --font-size-3xl:           2.25rem;
+
+    --font-weight-light:       300;
+    --font-weight-normal:      400;
+    --font-weight-medium:      500;
+    --font-weight-semibold:    600;
+    --font-weight-bold:        700;
+    --font-weight-extrabold:   800;
+
+    --line-height-tight:       1.2;
+    --line-height-normal:      1.5;
+    --line-height-relaxed:     1.75;
+
+    /* ---------------------------------------------------------------------- */
+    /* ABSTÄNDE (Spacing)                                                     */
+    /* ---------------------------------------------------------------------- */
+    --space-xs:     0.25rem;    /* 4px  */
+    --space-sm:     0.5rem;     /* 8px  */
+    --space-md:     0.75rem;    /* 12px */
+    --space-base:   1rem;       /* 16px */
+    --space-lg:     1.25rem;    /* 20px */
+    --space-xl:     1.5rem;     /* 24px */
+    --space-2xl:    2rem;       /* 32px */
+    --space-3xl:    3rem;       /* 48px */
+
+    /* ---------------------------------------------------------------------- */
+    /* BORDER RADIUS                                                          */
+    /* ---------------------------------------------------------------------- */
+    --radius-sm:    4px;
+    --radius-md:    8px;
+    --radius-lg:    12px;
+    --radius-xl:    16px;
+    --radius-2xl:   20px;
+    --radius-full:  9999px;
+
+    /* ---------------------------------------------------------------------- */
+    /* SCHATTEN                                                               */
+    /* ---------------------------------------------------------------------- */
+    --shadow-sm:    0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md:    0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg:    0 10px 25px rgba(0, 0, 0, 0.4);
+    --shadow-xl:    0 20px 40px rgba(0, 0, 0, 0.5);
+    --shadow-glow:  0 0 20px rgba(99, 102, 241, 0.3);
+    --shadow-online: 0 0 20px rgba(0, 255, 136, 0.3);
+    --shadow-offline: 0 0 20px rgba(255, 68, 85, 0.2);
+
+    /* ---------------------------------------------------------------------- */
+    /* TRANSITIONEN                                                           */
+    /* ---------------------------------------------------------------------- */
+    --transition-fast:    0.15s ease;
+    --transition-base:    0.25s ease;
+    --transition-slow:    0.4s ease;
+    --transition-spring:  0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* ---------------------------------------------------------------------- */
+    /* Z-INDEX SKALA                                                          */
+    /* ---------------------------------------------------------------------- */
+    --z-base:         1;
+    --z-card:         10;
+    --z-sticky:       100;
+    --z-navbar:       1000;
+    --z-modal-bg:     2000;
+    --z-modal:        2100;
+    --z-notification: 3000;
+    --z-loading:      9999;
+
+    /* ---------------------------------------------------------------------- */
+    /* LAYOUT                                                                 */
+    /* ---------------------------------------------------------------------- */
+    --navbar-height:     64px;
+    --sidebar-width:     320px;
+    --footer-height:     40px;
+    --card-gap:          12px;
+}
+
+
+/* ============================================================================
+   CSS RESET
+   ============================================================================
+   Setzt die Standard-Browser-Stile zurück, um eine konsistente Basis
+   für alle Elemente zu schaffen.
+   ============================================================================ */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    overflow: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Hintergrund-Gradients für Tiefenwirkung */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(0, 255, 136, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ============================================================================
+   TYPOGRAFIE
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--font-size-3xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+
+p {
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-normal);
+}
+
+a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-accent-primary-hover);
+}
+
+/* Monospace-Schrift Klasse */
+.font-mono {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+/* ============================================================================
+   SCROLLBAR ANPASSUNG
+   ============================================================================ */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-text-muted);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-tertiary);
+}
+
+/* Firefox Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-text-muted) transparent;
+}
+
+
+/* ============================================================================
+   AUSWAHL-HERVORHEBUNG
+   ============================================================================ */
+
+::selection {
+    background-color: rgba(99, 102, 241, 0.3);
+    color: var(--color-text-primary);
+}
+
+
+/* ============================================================================
+   LADE-BILDSCHRIM (Loading Screen)
+   ============================================================================ */
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-loading);
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    max-width: 400px;
+}
+
+.loading-logo {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto var(--space-xl);
+}
+
+.loading-globe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: var(--color-accent-primary);
+    z-index: 2;
+    animation: loadingFloat 2s ease-in-out infinite;
+}
+
+.loading-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.loading-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 2px solid transparent;
+    border-radius: 50%;
+}
+
+.loading-ring-1 {
+    width: 80px;
+    height: 80px;
+    margin: -40px 0 0 -40px;
+    border-top-color: var(--color-accent-primary);
+    animation: loadingSpin 1.2s linear infinite;
+}
+
+.loading-ring-2 {
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+    border-right-color: var(--color-accent-secondary);
+    animation: loadingSpin 1.8s linear infinite reverse;
+}
+
+.loading-ring-3 {
+    width: 120px;
+    height: 120px;
+    margin: -60px 0 0 -60px;
+    border-bottom-color: var(--color-online);
+    animation: loadingSpin 2.4s linear infinite;
+}
+
+.loading-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xl);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.loading-bar-container {
+    width: 280px;
+    height: 3px;
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-full);
+    margin: 0 auto var(--space-base);
+    overflow: hidden;
+}
+
+.loading-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-online));
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+}
+
+.loading-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    font-weight: var(--font-weight-medium);
+}
+
+@keyframes loadingFloat {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-8px); }
+}
+
+@keyframes loadingSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+/* ============================================================================
+   HAUPT-CONTAINER
+   ============================================================================ */
+
+.app-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: var(--z-base);
+    transition: opacity 0.6s ease;
+}
+
+.main-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* ============================================================================
+   UNIVERSELLE HILFSKLASSEN
+   ============================================================================ */
+
+/* Flex-Utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-center { align-items: center; justify-content: center; }
+.flex-between { justify-content: space-between; }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-base { gap: var(--space-base); }
+
+/* Text-Utilities */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-sm { font-size: var(--font-size-sm); }
+.text-xs { font-size: var(--font-size-xs); }
+.text-muted { color: var(--color-text-tertiary); }
+.text-online { color: var(--color-online); }
+.text-offline { color: var(--color-offline); }
+.text-warning { color: var(--color-warning); }
+
+/* Spacing-Utilities */
+.mt-sm { margin-top: var(--space-sm); }
+.mt-base { margin-top: var(--space-base); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-base { margin-bottom: var(--space-base); }

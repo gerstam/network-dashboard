@@ -1,0 +1,257 @@
+<!--
+================================================================================
+ MODALE DIALOGE - Network Operations Dashboard
+================================================================================
+ Datei:         templates/components/modals.html
+ Beschreibung:  Enthält alle modalen Dialogfenster der Anwendung:
+                - Systeminformations-Modal
+                - Ping-Ergebnis-Modal
+                - Standort-Detail-Modal
+                - Bestätigungs-Modal
+ Autor:         Network Dashboard Team
+ Erstellt:      2026-04-10
+ Version:       1.0.0
+================================================================================
+-->
+
+<!-- ====================================================================== -->
+<!-- MODAL OVERLAY (gemeinsamer Hintergrund für alle Modals)                 -->
+<!-- ====================================================================== -->
+<div class="modal-overlay" id="modal-overlay"></div>
+
+<!-- ====================================================================== -->
+<!-- SYSTEMINFORMATIONS-MODAL                                               -->
+<!-- ====================================================================== -->
+<div class="modal" id="modal-sysinfo" role="dialog" aria-labelledby="modal-sysinfo-title" aria-modal="true">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <div class="modal-header-left">
+                <div class="modal-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="modal-header-text">
+                    <h2 class="modal-title" id="modal-sysinfo-title">Systeminformationen</h2>
+                    <p class="modal-subtitle">Lokales System - Echtzeit-Daten</p>
+                </div>
+            </div>
+            <button class="modal-close" id="modal-sysinfo-close" aria-label="Dialog schließen">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body" id="modal-sysinfo-body">
+            <!-- Wird dynamisch von JavaScript befüllt -->
+            <div class="modal-loading" id="sysinfo-loading">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <p>Systeminformationen werden geladen...</p>
+            </div>
+
+            <!-- Systeminformationen Container -->
+            <div class="sysinfo-content" id="sysinfo-content" style="display: none;">
+
+                <!-- ====================================================== -->
+                <!-- BETRIEBSSYSTEM-SEKTION                                 -->
+                <!-- ====================================================== -->
+                <div class="sysinfo-section" id="sysinfo-os-section">
+                    <div class="sysinfo-section-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Betriebssystem</h3>
+                    </div>
+                    <div class="sysinfo-grid" id="sysinfo-os-grid">
+                        <!-- Wird dynamisch befüllt -->
+                    </div>
+                </div>
+
+                <!-- ====================================================== -->
+                <!-- CPU-SEKTION                                            -->
+                <!-- ====================================================== -->
+                <div class="sysinfo-section" id="sysinfo-cpu-section">
+                    <div class="sysinfo-section-header">
+                        <i class="fas fa-microchip"></i>
+                        <h3>Prozessor (CPU)</h3>
+                    </div>
+                    <div class="sysinfo-cpu-overview" id="sysinfo-cpu-overview">
+                        <!-- Wird dynamisch befüllt -->
+                    </div>
+                    <div class="sysinfo-cores" id="sysinfo-cpu-cores">
+                        <!-- CPU-Kern-Auslastung wird dynamisch befüllt -->
+                    </div>
+                </div>
+
+                <!-- ====================================================== -->
+                <!-- ARBEITSSPEICHER-SEKTION                                -->
+                <!-- ====================================================== -->
+                <div class="sysinfo-section" id="sysinfo-memory-section">
+                    <div class="sysinfo-section-header">
+                        <i class="fas fa-memory"></i>
+                        <h3>Arbeitsspeicher (RAM)</h3>
+                    </div>
+                    <div class="sysinfo-memory-overview" id="sysinfo-memory-overview">
+                        <!-- Wird dynamisch befüllt -->
+                    </div>
+                </div>
+
+                <!-- ====================================================== -->
+                <!-- FESTPLATTEN-SEKTION                                    -->
+                <!-- ====================================================== -->
+                <div class="sysinfo-section" id="sysinfo-disk-section">
+                    <div class="sysinfo-section-header">
+                        <i class="fas fa-hard-drive"></i>
+                        <h3>Festplatten</h3>
+                    </div>
+                    <div class="sysinfo-disk-overview" id="sysinfo-disk-overview">
+                        <!-- Wird dynamisch befüllt -->
+                    </div>
+                </div>
+
+                <!-- ====================================================== -->
+                <!-- NETZWERK-SEKTION                                       -->
+                <!-- ====================================================== -->
+                <div class="sysinfo-section" id="sysinfo-network-section">
+                    <div class="sysinfo-section-header">
+                        <i class="fas fa-ethernet"></i>
+                        <h3>Netzwerk</h3>
+                    </div>
+                    <div class="sysinfo-network-overview" id="sysinfo-network-overview">
+                        <!-- Wird dynamisch befüllt -->
+                    </div>
+                </div>
+
+                <!-- ====================================================== -->
+                <!-- BETRIEBSZEIT-SEKTION                                   -->
+                <!-- ====================================================== -->
+                <div class="sysinfo-section" id="sysinfo-uptime-section">
+                    <div class="sysinfo-section-header">
+                        <i class="fas fa-clock"></i>
+                        <h3>Betriebszeit</h3>
+                    </div>
+                    <div class="sysinfo-uptime-overview" id="sysinfo-uptime-overview">
+                        <!-- Wird dynamisch befüllt -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+            <button class="btn btn-ghost" id="btn-sysinfo-refresh">
+                <i class="fas fa-sync-alt"></i>
+                <span>Aktualisieren</span>
+            </button>
+            <button class="btn btn-primary" id="btn-sysinfo-close">
+                <span>Schließen</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ====================================================================== -->
+<!-- PING-ERGEBNIS-MODAL                                                    -->
+<!-- ====================================================================== -->
+<div class="modal" id="modal-ping" role="dialog" aria-labelledby="modal-ping-title" aria-modal="true">
+    <div class="modal-dialog modal-md">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <div class="modal-header-left">
+                <div class="modal-icon modal-icon-ping">
+                    <i class="fas fa-satellite-dish"></i>
+                </div>
+                <div class="modal-header-text">
+                    <h2 class="modal-title" id="modal-ping-title">Ping-Ergebnis</h2>
+                    <p class="modal-subtitle" id="modal-ping-subtitle">Standort wird angepingt...</p>
+                </div>
+            </div>
+            <button class="modal-close" id="modal-ping-close" aria-label="Dialog schließen">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body" id="modal-ping-body">
+            <!-- Lade-Animation -->
+            <div class="ping-loading" id="ping-loading">
+                <div class="ping-animation">
+                    <div class="ping-wave ping-wave-1"></div>
+                    <div class="ping-wave ping-wave-2"></div>
+                    <div class="ping-wave ping-wave-3"></div>
+                    <div class="ping-center-dot"></div>
+                </div>
+                <p class="ping-loading-text">Ping wird durchgeführt...</p>
+            </div>
+
+            <!-- Ping-Ergebnis Container -->
+            <div class="ping-result-content" id="ping-result-content" style="display: none;">
+                <!-- Status-Anzeige -->
+                <div class="ping-status-display" id="ping-status-display">
+                    <!-- Wird dynamisch befüllt -->
+                </div>
+
+                <!-- Statistiken -->
+                <div class="ping-stats-grid" id="ping-stats-grid">
+                    <!-- Wird dynamisch befüllt -->
+                </div>
+
+                <!-- Latenz-Anzeige -->
+                <div class="ping-latency-bars" id="ping-latency-bars">
+                    <!-- Wird dynamisch befüllt -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+            <button class="btn btn-ghost" id="btn-ping-retry">
+                <i class="fas fa-redo"></i>
+                <span>Erneut pingen</span>
+            </button>
+            <button class="btn btn-primary" id="btn-ping-close">
+                <span>Schließen</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ====================================================================== -->
+<!-- STANDORT-DETAIL-MODAL                                                  -->
+<!-- ====================================================================== -->
+<div class="modal" id="modal-location" role="dialog" aria-labelledby="modal-location-title" aria-modal="true">
+    <div class="modal-dialog modal-md">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <div class="modal-header-left">
+                <div class="modal-icon modal-icon-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="modal-header-text">
+                    <h2 class="modal-title" id="modal-location-title">Standort-Details</h2>
+                    <p class="modal-subtitle" id="modal-location-subtitle">Detaillierte Informationen</p>
+                </div>
+            </div>
+            <button class="modal-close" id="modal-location-close" aria-label="Dialog schließen">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body" id="modal-location-body">
+            <div class="location-detail-content" id="location-detail-content">
+                <!-- Wird dynamisch befüllt -->
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+            <button class="btn btn-ghost" id="btn-location-ping">
+                <i class="fas fa-satellite-dish"></i>
+                <span>Ping</span>
+            </button>
+            <button class="btn btn-primary" id="btn-location-close">
+                <span>Schließen</span>
+            </button>
+        </div>
+    </div>
+</div>

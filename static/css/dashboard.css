@@ -1,0 +1,977 @@
+/*
+================================================================================
+ DASHBOARD-LAYOUT - Network Operations Dashboard
+================================================================================
+ Datei:         static/css/dashboard.css
+ Beschreibung:  Definiert das 3-Spalten Dashboard-Layout mit Sidebar,
+                zentralem Kartenbereich und rechter Sidebar. Enthält auch
+                die Styles für Navbar, Footer und responsive Anpassungen.
+ Autor:         Network Dashboard Team
+ Erstellt:      2026-04-10
+ Version:       1.0.0
+================================================================================
+*/
+
+/* ============================================================================
+   NAVIGATIONSLEISTE (Navbar)
+   ============================================================================ */
+
+.navbar {
+    height: var(--navbar-height);
+    background: var(--color-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-glass-border);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: var(--z-navbar);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-lg);
+    gap: var(--space-xl);
+}
+
+/* --- Navbar Links: Logo --- */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    min-width: 220px;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    cursor: pointer;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg);
+    transition: background var(--transition-base);
+}
+
+.navbar-logo:hover {
+    background: var(--color-glass-highlight);
+}
+
+.logo-icon-wrapper {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon {
+    font-size: 20px;
+    color: var(--color-accent-primary);
+    position: relative;
+    z-index: 2;
+}
+
+.logo-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 38px;
+    height: 38px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+}
+
+.logo-subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* --- Navbar Mitte: Status-Badges --- */
+.navbar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.navbar-status-badges {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.03em;
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.status-badge:hover {
+    transform: translateY(-1px);
+}
+
+.status-badge-online {
+    background: var(--color-online-bg);
+    border: 1px solid var(--color-online-border);
+    color: var(--color-online-text);
+}
+
+.status-badge-online:hover {
+    box-shadow: 0 0 15px var(--color-online-glow);
+}
+
+.status-badge-offline {
+    background: var(--color-offline-bg);
+    border: 1px solid var(--color-offline-border);
+    color: var(--color-offline-text);
+}
+
+.status-badge-offline:hover {
+    box-shadow: 0 0 15px var(--color-offline-glow);
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.badge-dot-online {
+    background: var(--color-online);
+}
+
+.badge-dot-online .badge-dot-pulse {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-online);
+    opacity: 0;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+.badge-dot-offline {
+    background: var(--color-offline);
+}
+
+.badge-icon {
+    font-size: 11px;
+    opacity: 0.9;
+}
+
+.badge-label {
+    font-weight: var(--font-weight-semibold);
+}
+
+.badge-status {
+    font-size: 9px;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+/* Verbindungslinie zwischen Badges */
+.connection-line {
+    width: 60px;
+    height: 2px;
+    position: relative;
+}
+
+.connection-line-inner {
+    width: 100%;
+    height: 100%;
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+    position: relative;
+    overflow: hidden;
+}
+
+.connection-dots {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    transform: translateY(-50%);
+}
+
+.connection-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-text-muted);
+    animation: connectionDotPulse 2s ease-in-out infinite;
+}
+
+.cd-1 { animation-delay: 0s; }
+.cd-2 { animation-delay: 0.3s; }
+.cd-3 { animation-delay: 0.6s; }
+
+/* --- Navbar Rechts: Uhr und Aktionen --- */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    min-width: 220px;
+    justify-content: flex-end;
+}
+
+.navbar-clock {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
+    background: var(--color-glass-highlight);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-glass-border);
+    font-size: var(--font-size-xs);
+}
+
+.clock-icon {
+    color: var(--color-accent-primary);
+    font-size: 12px;
+}
+
+.clock-time {
+    font-family: var(--font-mono);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    min-width: 65px;
+    text-align: center;
+}
+
+.clock-date {
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-xs);
+}
+
+.navbar-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: transparent;
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.navbar-btn:hover {
+    background: var(--color-glass-highlight);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-hover);
+}
+
+.navbar-btn .btn-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+}
+
+.auto-refresh-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-text-muted);
+    transition: background var(--transition-base);
+}
+
+.auto-refresh-indicator.active {
+    background: var(--color-online);
+    box-shadow: 0 0 6px var(--color-online-glow);
+}
+
+/* Navbar Progress Bar */
+.navbar-progress {
+    height: 2px;
+    background: transparent;
+    position: relative;
+}
+
+.navbar-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-online));
+    transition: width 1s linear;
+    border-radius: 0 var(--radius-full) var(--radius-full) 0;
+}
+
+
+/* ============================================================================
+   DASHBOARD 3-SPALTEN LAYOUT
+   ============================================================================ */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr var(--sidebar-width);
+    grid-template-rows: 1fr;
+    height: calc(100vh - var(--navbar-height) - var(--footer-height));
+    gap: 0;
+    overflow: hidden;
+}
+
+/* --- Sidebars --- */
+.dashboard-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-gap);
+    padding: var(--card-gap);
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--color-bg-secondary);
+    border-right: 1px solid var(--color-border);
+}
+
+.dashboard-sidebar-right {
+    border-right: none;
+    border-left: 1px solid var(--color-border);
+}
+
+/* --- Hauptbereich --- */
+.dashboard-main {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* ============================================================================
+   DASHBOARD-KARTEN (Cards)
+   ============================================================================ */
+
+.dashboard-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.dashboard-card:hover {
+    border-color: var(--color-border-hover);
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-base);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-glass-highlight);
+}
+
+.card-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.card-icon {
+    font-size: 14px;
+    color: var(--color-accent-primary);
+}
+
+.card-icon-online { color: var(--color-online); }
+.card-icon-offline { color: var(--color-offline); }
+
+.card-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    letter-spacing: 0.01em;
+}
+
+.card-badge {
+    font-size: 10px;
+    font-weight: var(--font-weight-bold);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: var(--color-online-bg);
+    color: var(--color-online);
+    border: 1px solid var(--color-online-border);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.card-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-tertiary);
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    transition: all var(--transition-fast);
+}
+
+.card-btn:hover {
+    color: var(--color-text-primary);
+    background: var(--color-bg-elevated);
+}
+
+/* Card Body */
+.card-body {
+    padding: var(--space-base);
+}
+
+.card-body-log {
+    padding: var(--space-sm);
+    max-height: none;
+    flex: 1;
+}
+
+/* --- Standort-Karten-Styles --- */
+.card-location {
+    transition: all var(--transition-base);
+}
+
+.card-online {
+    border-color: var(--color-online-border);
+}
+
+.card-online:hover {
+    box-shadow: var(--shadow-online);
+    border-color: rgba(0, 255, 136, 0.35);
+}
+
+.card-offline {
+    border-color: var(--color-offline-border);
+    opacity: 0.85;
+}
+
+.card-offline:hover {
+    box-shadow: var(--shadow-offline);
+    border-color: rgba(255, 68, 85, 0.35);
+    opacity: 1;
+}
+
+/* Status Indicator */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 10px;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+}
+
+.status-online {
+    background: var(--color-online-bg);
+    color: var(--color-online);
+    border: 1px solid var(--color-online-border);
+    position: relative;
+}
+
+.status-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-online);
+    animation: statusPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 6px var(--color-online-glow);
+}
+
+.status-offline {
+    background: var(--color-offline-bg);
+    color: var(--color-offline);
+    border: 1px solid var(--color-offline-border);
+}
+
+/* Location Info Grid */
+.location-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-xs);
+}
+
+.info-label {
+    color: var(--color-text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.info-label i {
+    width: 14px;
+    text-align: center;
+    font-size: 11px;
+}
+
+.info-value {
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    text-align: right;
+}
+
+.flag-emoji {
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* Services Mini-Anzeige */
+.services-mini {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--font-size-xs);
+}
+
+.services-label {
+    color: var(--color-text-tertiary);
+    font-weight: var(--font-weight-medium);
+}
+
+.services-dots {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+}
+
+.service-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all var(--transition-base);
+}
+
+.service-dot.online {
+    background: var(--color-online);
+    box-shadow: 0 0 4px var(--color-online-glow);
+}
+
+.service-dot.offline {
+    background: var(--color-offline);
+    opacity: 0.6;
+}
+
+.services-count {
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    font-weight: var(--font-weight-semibold);
+}
+
+
+/* ============================================================================
+   GESUNDHEITS-GAUGE
+   ============================================================================ */
+
+.health-gauge-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-base);
+}
+
+.health-gauge {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.health-gauge-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.gauge-bg {
+    fill: none;
+    stroke: var(--color-bg-elevated);
+    stroke-width: 6;
+}
+
+.gauge-progress {
+    fill: none;
+    stroke: var(--color-online);
+    stroke-width: 6;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease;
+}
+
+.health-gauge-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.gauge-value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1;
+}
+
+.gauge-unit {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Health Summary */
+.health-summary {
+    display: flex;
+    justify-content: space-around;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.health-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.health-stat-icon {
+    font-size: 8px;
+}
+
+.health-stat-icon.online { color: var(--color-online); }
+.health-stat-icon.offline { color: var(--color-offline); }
+.health-stat-icon.total { color: var(--color-accent-primary); font-size: 12px; }
+
+.health-stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+}
+
+.health-stat-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+}
+
+
+/* ============================================================================
+   SYSTEM-METRIKEN
+   ============================================================================ */
+
+.system-metric {
+    margin-bottom: var(--space-md);
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.metric-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.metric-label i {
+    font-size: 11px;
+    color: var(--color-accent-primary);
+}
+
+.metric-value {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+}
+
+.metric-bar {
+    height: 6px;
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.metric-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-online));
+    transition: width 1s ease;
+    position: relative;
+}
+
+.metric-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* System Uptime */
+.system-uptime {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-sm);
+}
+
+.uptime-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.uptime-label i {
+    color: var(--color-accent-primary);
+}
+
+.uptime-value {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+}
+
+
+/* ============================================================================
+   VERBINDUNGS-LOG
+   ============================================================================ */
+
+.card-log {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.card-log .card-body-log {
+    flex: 1;
+    overflow: hidden;
+}
+
+.log-container {
+    height: 100%;
+    max-height: calc(100vh - var(--navbar-height) - var(--footer-height) - 400px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-right: 4px;
+}
+
+.log-entry {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: 5px var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    transition: background var(--transition-fast);
+    animation: logFadeIn 0.3s ease;
+}
+
+.log-entry:hover {
+    background: var(--color-glass-highlight);
+}
+
+.log-time {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-text-muted);
+    min-width: 55px;
+    flex-shrink: 0;
+    padding-top: 1px;
+}
+
+.log-icon {
+    font-size: 10px;
+    min-width: 16px;
+    text-align: center;
+    flex-shrink: 0;
+    padding-top: 2px;
+}
+
+.log-message {
+    color: var(--color-text-secondary);
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+.log-entry-info .log-icon { color: var(--color-info); }
+.log-entry-success .log-icon { color: var(--color-online); }
+.log-entry-warning .log-icon { color: var(--color-warning); }
+.log-entry-error .log-icon { color: var(--color-offline); }
+.log-entry-ping .log-icon { color: var(--color-accent-primary); }
+
+@keyframes logFadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+
+.dashboard-footer {
+    height: var(--footer-height);
+    background: var(--color-glass);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--color-glass-border);
+    display: flex;
+    align-items: center;
+    z-index: var(--z-sticky);
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-lg);
+    font-size: var(--font-size-xs);
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.footer-logo {
+    color: var(--color-text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.footer-logo i {
+    color: var(--color-accent-primary);
+}
+
+.footer-version {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-text-muted);
+    padding: 1px 6px;
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-sm);
+}
+
+.footer-separator {
+    color: var(--color-text-muted);
+}
+
+.footer-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-text-tertiary);
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.status-dot-online {
+    background: var(--color-online);
+    box-shadow: 0 0 6px var(--color-online-glow);
+}
+
+.footer-update {
+    color: var(--color-text-muted);
+}
+
+.footer-copyright {
+    color: var(--color-text-muted);
+}
+
+
+/* ============================================================================
+   ANIMATIONEN
+   ============================================================================ */
+
+@keyframes badgePulse {
+    0% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 0; transform: scale(2); }
+    100% { opacity: 0; transform: scale(2.5); }
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--color-online-glow); }
+    50% { opacity: 0.6; box-shadow: 0 0 12px var(--color-online-glow); }
+}
+
+@keyframes connectionDotPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes logoPulse {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.3); }
+}

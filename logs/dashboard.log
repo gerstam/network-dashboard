@@ -1,0 +1,569 @@
+2026-04-10 15:01:01,149 - app - INFO - Logging-System initialisiert
+2026-04-10 15:01:01,150 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:01:01,150 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:01:01,151 - app - INFO - ======================================================================
+2026-04-10 15:01:01,151 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:01:01,151 - app - INFO - ======================================================================
+2026-04-10 15:01:01,151 - app - INFO -   Umgebung: development
+2026-04-10 15:01:01,152 - app - INFO -   Debug: True
+2026-04-10 15:01:01,153 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:01:01,154 - app - INFO -   Port: 5000
+2026-04-10 15:01:01,155 - app - INFO - ======================================================================
+2026-04-10 15:01:01,159 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:01:01,161 - app - INFO - Hauptrouten registriert
+2026-04-10 15:01:01,161 - app - INFO - Error Handler registriert
+2026-04-10 15:01:01,161 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:01:01,162 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:01:01,741 - app - INFO - Logging-System initialisiert
+2026-04-10 15:01:01,741 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:01:01,742 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:01:01,742 - app - INFO - ======================================================================
+2026-04-10 15:01:01,742 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:01:01,742 - app - INFO - ======================================================================
+2026-04-10 15:01:01,743 - app - INFO -   Umgebung: development
+2026-04-10 15:01:01,743 - app - INFO -   Debug: True
+2026-04-10 15:01:01,744 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:01:01,744 - app - INFO -   Port: 5000
+2026-04-10 15:01:01,744 - app - INFO - ======================================================================
+2026-04-10 15:01:01,748 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:01:01,750 - app - INFO - Hauptrouten registriert
+2026-04-10 15:01:01,751 - app - INFO - Error Handler registriert
+2026-04-10 15:01:01,751 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:01:01,752 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:02:35,467 - app - INFO - Hauptseite aufgerufen
+2026-04-10 15:03:04,008 - app - INFO - Hauptseite aufgerufen
+2026-04-10 15:03:22,270 - app - INFO - Logging-System initialisiert
+2026-04-10 15:03:22,271 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:03:22,271 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:03:22,272 - app - INFO - ======================================================================
+2026-04-10 15:03:22,272 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:03:22,272 - app - INFO - ======================================================================
+2026-04-10 15:03:22,272 - app - INFO -   Umgebung: development
+2026-04-10 15:03:22,272 - app - INFO -   Debug: True
+2026-04-10 15:03:22,272 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:03:22,273 - app - INFO -   Port: 5000
+2026-04-10 15:03:22,273 - app - INFO - ======================================================================
+2026-04-10 15:03:22,275 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:03:22,276 - app - INFO - Hauptrouten registriert
+2026-04-10 15:03:22,276 - app - INFO - Error Handler registriert
+2026-04-10 15:03:22,277 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:03:22,277 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:03:22,538 - app - INFO - Logging-System initialisiert
+2026-04-10 15:03:22,541 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:03:22,543 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:03:22,544 - app - INFO - ======================================================================
+2026-04-10 15:03:22,545 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:03:22,545 - app - INFO - ======================================================================
+2026-04-10 15:03:22,546 - app - INFO -   Umgebung: development
+2026-04-10 15:03:22,546 - app - INFO -   Debug: True
+2026-04-10 15:03:22,547 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:03:22,547 - app - INFO -   Port: 5000
+2026-04-10 15:03:22,548 - app - INFO - ======================================================================
+2026-04-10 15:03:22,550 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:03:22,551 - app - INFO - Hauptrouten registriert
+2026-04-10 15:03:22,551 - app - INFO - Error Handler registriert
+2026-04-10 15:03:22,552 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:03:22,552 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:03:30,394 - app - INFO - Hauptseite aufgerufen
+2026-04-10 15:05:21,074 - app - INFO - Hauptseite aufgerufen
+2026-04-10 15:27:32,889 - app - INFO - Hauptseite aufgerufen
+2026-04-10 15:29:40,346 - app - INFO - Logging-System initialisiert
+2026-04-10 15:29:40,347 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:29:40,347 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:29:40,347 - app - INFO - ======================================================================
+2026-04-10 15:29:40,348 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:29:40,348 - app - INFO - ======================================================================
+2026-04-10 15:29:40,348 - app - INFO -   Umgebung: development
+2026-04-10 15:29:40,349 - app - INFO -   Debug: True
+2026-04-10 15:29:40,349 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:29:40,349 - app - INFO -   Port: 5000
+2026-04-10 15:29:40,349 - app - INFO - ======================================================================
+2026-04-10 15:29:40,352 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:29:40,352 - app - INFO - Hauptrouten registriert
+2026-04-10 15:29:40,352 - app - INFO - Error Handler registriert
+2026-04-10 15:29:40,353 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:29:40,353 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:30:09,534 - app - INFO - Logging-System initialisiert
+2026-04-10 15:30:09,535 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:30:09,535 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:30:09,535 - app - INFO - ======================================================================
+2026-04-10 15:30:09,535 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:30:09,536 - app - INFO - ======================================================================
+2026-04-10 15:30:09,536 - app - INFO -   Umgebung: development
+2026-04-10 15:30:09,536 - app - INFO -   Debug: True
+2026-04-10 15:30:09,536 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:30:09,536 - app - INFO -   Port: 5000
+2026-04-10 15:30:09,536 - app - INFO - ======================================================================
+2026-04-10 15:30:09,539 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:30:09,539 - app - INFO - Hauptrouten registriert
+2026-04-10 15:30:09,540 - app - INFO - Error Handler registriert
+2026-04-10 15:30:09,540 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:30:09,540 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:30:09,806 - app - INFO - Logging-System initialisiert
+2026-04-10 15:30:09,807 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:30:09,808 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:30:09,808 - app - INFO - ======================================================================
+2026-04-10 15:30:09,809 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:30:09,809 - app - INFO - ======================================================================
+2026-04-10 15:30:09,810 - app - INFO -   Umgebung: development
+2026-04-10 15:30:09,814 - app - INFO -   Debug: True
+2026-04-10 15:30:09,816 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:30:09,818 - app - INFO -   Port: 5000
+2026-04-10 15:30:09,819 - app - INFO - ======================================================================
+2026-04-10 15:30:09,821 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:30:09,822 - app - INFO - Hauptrouten registriert
+2026-04-10 15:30:09,822 - app - INFO - Error Handler registriert
+2026-04-10 15:30:09,823 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:30:09,823 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:30:12,082 - app - INFO - Hauptseite aufgerufen
+2026-04-10 15:30:41,045 - app - INFO - Hauptseite aufgerufen
+2026-04-10 15:31:44,728 - app - INFO - Logging-System initialisiert
+2026-04-10 15:31:44,728 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:31:44,729 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:31:44,729 - app - INFO - ======================================================================
+2026-04-10 15:31:44,729 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:31:44,729 - app - INFO - ======================================================================
+2026-04-10 15:31:44,729 - app - INFO -   Umgebung: development
+2026-04-10 15:31:44,730 - app - INFO -   Debug: True
+2026-04-10 15:31:44,730 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:31:44,730 - app - INFO -   Port: 5000
+2026-04-10 15:31:44,730 - app - INFO - ======================================================================
+2026-04-10 15:31:44,732 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:31:44,733 - app - INFO - Hauptrouten registriert
+2026-04-10 15:31:44,733 - app - INFO - Error Handler registriert
+2026-04-10 15:31:44,734 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:31:44,734 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:33:04,641 - app - INFO - Logging-System initialisiert
+2026-04-10 15:33:04,642 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:33:04,642 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:33:04,642 - app - INFO - ======================================================================
+2026-04-10 15:33:04,642 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:33:04,642 - app - INFO - ======================================================================
+2026-04-10 15:33:04,642 - app - INFO -   Umgebung: development
+2026-04-10 15:33:04,643 - app - INFO -   Debug: True
+2026-04-10 15:33:04,643 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:33:04,643 - app - INFO -   Port: 5000
+2026-04-10 15:33:04,643 - app - INFO - ======================================================================
+2026-04-10 15:33:04,646 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:33:04,646 - app - INFO - Hauptrouten registriert
+2026-04-10 15:33:04,646 - app - INFO - Error Handler registriert
+2026-04-10 15:33:04,647 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:33:04,647 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:33:29,859 - app - INFO - Logging-System initialisiert
+2026-04-10 15:33:29,861 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:33:29,863 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:33:29,863 - app - INFO - ======================================================================
+2026-04-10 15:33:29,864 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:33:29,864 - app - INFO - ======================================================================
+2026-04-10 15:33:29,864 - app - INFO -   Umgebung: development
+2026-04-10 15:33:29,864 - app - INFO -   Debug: True
+2026-04-10 15:33:29,867 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:33:29,867 - app - INFO -   Port: 5000
+2026-04-10 15:33:29,868 - app - INFO - ======================================================================
+2026-04-10 15:33:29,871 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:33:29,872 - app - INFO - Hauptrouten registriert
+2026-04-10 15:33:29,874 - app - INFO - Error Handler registriert
+2026-04-10 15:33:29,874 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:33:29,875 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:33:30,178 - app - INFO - Logging-System initialisiert
+2026-04-10 15:33:30,178 - app - INFO - Log-Level: DEBUG
+2026-04-10 15:33:30,179 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-10 15:33:30,179 - app - INFO - ======================================================================
+2026-04-10 15:33:30,179 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-10 15:33:30,179 - app - INFO - ======================================================================
+2026-04-10 15:33:30,179 - app - INFO -   Umgebung: development
+2026-04-10 15:33:30,180 - app - INFO -   Debug: True
+2026-04-10 15:33:30,180 - app - INFO -   Host: 0.0.0.0
+2026-04-10 15:33:30,180 - app - INFO -   Port: 5000
+2026-04-10 15:33:30,180 - app - INFO - ======================================================================
+2026-04-10 15:33:30,183 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-10 15:33:30,183 - app - INFO - Hauptrouten registriert
+2026-04-10 15:33:30,184 - app - INFO - Error Handler registriert
+2026-04-10 15:33:30,184 - app - INFO - Kontext-Prozessoren registriert
+2026-04-10 15:33:30,184 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-10 15:33:45,140 - app - INFO - Hauptseite aufgerufen
+2026-04-13 13:37:34,227 - app - INFO - Logging-System initialisiert
+2026-04-13 13:37:34,228 - app - INFO - Log-Level: DEBUG
+2026-04-13 13:37:34,229 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 13:37:34,229 - app - INFO - ======================================================================
+2026-04-13 13:37:34,229 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 13:37:34,229 - app - INFO - ======================================================================
+2026-04-13 13:37:34,229 - app - INFO -   Umgebung: development
+2026-04-13 13:37:34,230 - app - INFO -   Debug: True
+2026-04-13 13:37:34,230 - app - INFO -   Host: 0.0.0.0
+2026-04-13 13:37:34,230 - app - INFO -   Port: 5000
+2026-04-13 13:37:34,230 - app - INFO - ======================================================================
+2026-04-13 13:37:34,235 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 13:37:34,237 - app - INFO - Hauptrouten registriert
+2026-04-13 13:37:34,238 - app - INFO - Error Handler registriert
+2026-04-13 13:37:34,238 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 13:37:34,238 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 13:38:22,894 - app - INFO - Logging-System initialisiert
+2026-04-13 13:38:22,895 - app - INFO - Log-Level: DEBUG
+2026-04-13 13:38:22,895 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 13:38:22,895 - app - INFO - ======================================================================
+2026-04-13 13:38:22,895 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 13:38:22,895 - app - INFO - ======================================================================
+2026-04-13 13:38:22,895 - app - INFO -   Umgebung: development
+2026-04-13 13:38:22,895 - app - INFO -   Debug: True
+2026-04-13 13:38:22,896 - app - INFO -   Host: 0.0.0.0
+2026-04-13 13:38:22,896 - app - INFO -   Port: 5000
+2026-04-13 13:38:22,896 - app - INFO - ======================================================================
+2026-04-13 13:38:22,903 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 13:38:22,906 - app - INFO - Hauptrouten registriert
+2026-04-13 13:38:22,907 - app - INFO - Error Handler registriert
+2026-04-13 13:38:22,907 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 13:38:22,907 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 13:38:32,674 - app - INFO - Logging-System initialisiert
+2026-04-13 13:38:32,674 - app - INFO - Log-Level: DEBUG
+2026-04-13 13:38:32,674 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 13:38:32,674 - app - INFO - ======================================================================
+2026-04-13 13:38:32,674 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 13:38:32,674 - app - INFO - ======================================================================
+2026-04-13 13:38:32,675 - app - INFO -   Umgebung: development
+2026-04-13 13:38:32,675 - app - INFO -   Debug: True
+2026-04-13 13:38:32,675 - app - INFO -   Host: 0.0.0.0
+2026-04-13 13:38:32,675 - app - INFO -   Port: 5000
+2026-04-13 13:38:32,675 - app - INFO - ======================================================================
+2026-04-13 13:38:32,678 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 13:38:32,679 - app - INFO - Hauptrouten registriert
+2026-04-13 13:38:32,679 - app - INFO - Error Handler registriert
+2026-04-13 13:38:32,680 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 13:38:32,680 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 13:38:33,714 - app - INFO - Logging-System initialisiert
+2026-04-13 13:38:33,714 - app - INFO - Log-Level: DEBUG
+2026-04-13 13:38:33,715 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 13:38:33,715 - app - INFO - ======================================================================
+2026-04-13 13:38:33,715 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 13:38:33,715 - app - INFO - ======================================================================
+2026-04-13 13:38:33,715 - app - INFO -   Umgebung: development
+2026-04-13 13:38:33,715 - app - INFO -   Debug: True
+2026-04-13 13:38:33,715 - app - INFO -   Host: 0.0.0.0
+2026-04-13 13:38:33,715 - app - INFO -   Port: 5000
+2026-04-13 13:38:33,715 - app - INFO - ======================================================================
+2026-04-13 13:38:33,718 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 13:38:33,720 - app - INFO - Hauptrouten registriert
+2026-04-13 13:38:33,720 - app - INFO - Error Handler registriert
+2026-04-13 13:38:33,720 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 13:38:33,720 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 14:48:01,673 - app - INFO - Text-Dashboard aufgerufen
+2026-04-13 14:50:28,690 - app - INFO - Text-Modus Ping an frankfurt
+2026-04-13 14:50:58,955 - app - INFO - Text-Modus Systeminfo aufgerufen
+2026-04-13 14:56:58,288 - app - INFO - Text-Modus Ping an frankfurt
+2026-04-13 15:48:35,999 - app - INFO - Logging-System initialisiert
+2026-04-13 15:48:36,000 - app - INFO - Log-Level: DEBUG
+2026-04-13 15:48:36,000 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 15:48:36,001 - app - INFO - ======================================================================
+2026-04-13 15:48:36,001 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 15:48:36,001 - app - INFO - ======================================================================
+2026-04-13 15:48:36,001 - app - INFO -   Umgebung: development
+2026-04-13 15:48:36,002 - app - INFO -   Debug: True
+2026-04-13 15:48:36,002 - app - INFO -   Host: 0.0.0.0
+2026-04-13 15:48:36,002 - app - INFO -   Port: 5000
+2026-04-13 15:48:36,002 - app - INFO - ======================================================================
+2026-04-13 15:48:36,005 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 15:48:36,006 - app - INFO - Hauptrouten registriert
+2026-04-13 15:48:36,007 - app - INFO - Error Handler registriert
+2026-04-13 15:48:36,008 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 15:48:36,009 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 15:48:36,566 - app - INFO - Logging-System initialisiert
+2026-04-13 15:48:36,567 - app - INFO - Log-Level: DEBUG
+2026-04-13 15:48:36,568 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 15:48:36,568 - app - INFO - ======================================================================
+2026-04-13 15:48:36,568 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 15:48:36,568 - app - INFO - ======================================================================
+2026-04-13 15:48:36,568 - app - INFO -   Umgebung: development
+2026-04-13 15:48:36,569 - app - INFO -   Debug: True
+2026-04-13 15:48:36,569 - app - INFO -   Host: 0.0.0.0
+2026-04-13 15:48:36,569 - app - INFO -   Port: 5000
+2026-04-13 15:48:36,569 - app - INFO - ======================================================================
+2026-04-13 15:48:36,572 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 15:48:36,574 - app - INFO - Hauptrouten registriert
+2026-04-13 15:48:36,574 - app - INFO - Error Handler registriert
+2026-04-13 15:48:36,575 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 15:48:36,575 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 15:48:39,416 - app - INFO - Hauptseite aufgerufen
+2026-04-13 15:52:50,188 - app - INFO - Hauptseite aufgerufen
+2026-04-13 15:53:28,572 - app - INFO - Hauptseite aufgerufen
+2026-04-13 15:53:49,353 - app - INFO - Hauptseite aufgerufen
+2026-04-13 15:54:07,605 - app - INFO - Hauptseite aufgerufen
+2026-04-13 15:54:26,809 - app - INFO - Hauptseite aufgerufen
+2026-04-13 16:01:06,046 - app - INFO - Logging-System initialisiert
+2026-04-13 16:01:06,046 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:01:06,046 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:01:06,046 - app - INFO - ======================================================================
+2026-04-13 16:01:06,046 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:01:06,046 - app - INFO - ======================================================================
+2026-04-13 16:01:06,046 - app - INFO -   Umgebung: development
+2026-04-13 16:01:06,046 - app - INFO -   Debug: True
+2026-04-13 16:01:06,047 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:01:06,047 - app - INFO -   Port: 5000
+2026-04-13 16:01:06,047 - app - INFO - ======================================================================
+2026-04-13 16:01:06,050 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:01:06,051 - app - INFO - Hauptrouten registriert
+2026-04-13 16:01:06,051 - app - INFO - Error Handler registriert
+2026-04-13 16:01:06,052 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:01:06,052 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:01:08,146 - app - INFO - Logging-System initialisiert
+2026-04-13 16:01:08,147 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:01:08,147 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:01:08,147 - app - INFO - ======================================================================
+2026-04-13 16:01:08,147 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:01:08,147 - app - INFO - ======================================================================
+2026-04-13 16:01:08,147 - app - INFO -   Umgebung: development
+2026-04-13 16:01:08,147 - app - INFO -   Debug: True
+2026-04-13 16:01:08,147 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:01:08,147 - app - INFO -   Port: 5000
+2026-04-13 16:01:08,147 - app - INFO - ======================================================================
+2026-04-13 16:01:08,151 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:01:08,153 - app - INFO - Hauptrouten registriert
+2026-04-13 16:01:08,154 - app - INFO - Error Handler registriert
+2026-04-13 16:01:08,155 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:01:08,155 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:10:01,002 - app - INFO - Logging-System initialisiert
+2026-04-13 16:10:01,002 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:10:01,002 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:10:01,003 - app - INFO - ======================================================================
+2026-04-13 16:10:01,003 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:10:01,003 - app - INFO - ======================================================================
+2026-04-13 16:10:01,003 - app - INFO -   Umgebung: development
+2026-04-13 16:10:01,003 - app - INFO -   Debug: True
+2026-04-13 16:10:01,003 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:10:01,003 - app - INFO -   Port: 5000
+2026-04-13 16:10:01,003 - app - INFO - ======================================================================
+2026-04-13 16:10:01,007 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:10:01,008 - app - INFO - Hauptrouten registriert
+2026-04-13 16:10:01,009 - app - INFO - Error Handler registriert
+2026-04-13 16:10:01,009 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:10:01,009 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:10:01,046 - app - INFO - Logging-System initialisiert
+2026-04-13 16:10:01,047 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:10:01,048 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:10:01,048 - app - INFO - ======================================================================
+2026-04-13 16:10:01,049 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:10:01,050 - app - INFO - ======================================================================
+2026-04-13 16:10:01,051 - app - INFO -   Umgebung: development
+2026-04-13 16:10:01,051 - app - INFO -   Debug: True
+2026-04-13 16:10:01,052 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:10:01,052 - app - INFO -   Port: 5000
+2026-04-13 16:10:01,052 - app - INFO - ======================================================================
+2026-04-13 16:10:01,056 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:10:01,057 - app - INFO - Hauptrouten registriert
+2026-04-13 16:10:01,058 - app - INFO - Error Handler registriert
+2026-04-13 16:10:01,058 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:10:01,058 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:10:02,144 - app - INFO - Logging-System initialisiert
+2026-04-13 16:10:02,145 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:10:02,145 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:10:02,145 - app - INFO - ======================================================================
+2026-04-13 16:10:02,145 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:10:02,146 - app - INFO - ======================================================================
+2026-04-13 16:10:02,146 - app - INFO -   Umgebung: development
+2026-04-13 16:10:02,146 - app - INFO -   Debug: True
+2026-04-13 16:10:02,146 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:10:02,146 - app - INFO -   Port: 5000
+2026-04-13 16:10:02,146 - app - INFO - ======================================================================
+2026-04-13 16:10:02,153 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:10:02,158 - app - INFO - Hauptrouten registriert
+2026-04-13 16:10:02,158 - app - INFO - Error Handler registriert
+2026-04-13 16:10:02,159 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:10:02,159 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:10:12,209 - app - INFO - Logging-System initialisiert
+2026-04-13 16:10:12,223 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:10:12,234 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:10:12,245 - app - INFO - ======================================================================
+2026-04-13 16:10:12,257 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:10:12,273 - app - INFO - ======================================================================
+2026-04-13 16:10:12,289 - app - INFO -   Umgebung: development
+2026-04-13 16:10:12,310 - app - INFO -   Debug: True
+2026-04-13 16:10:12,339 - app - INFO - Logging-System initialisiert
+2026-04-13 16:10:12,340 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:10:12,340 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:10:12,340 - app - INFO - ======================================================================
+2026-04-13 16:10:12,340 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:10:12,340 - app - INFO - ======================================================================
+2026-04-13 16:10:12,340 - app - INFO -   Umgebung: development
+2026-04-13 16:10:12,341 - app - INFO -   Debug: True
+2026-04-13 16:10:12,341 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:10:12,341 - app - INFO -   Port: 5000
+2026-04-13 16:10:12,341 - app - INFO - ======================================================================
+2026-04-13 16:10:12,334 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:10:12,348 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:10:12,351 - app - INFO - Hauptrouten registriert
+2026-04-13 16:10:12,348 - app - INFO -   Port: 5000
+2026-04-13 16:10:12,352 - app - INFO - Error Handler registriert
+2026-04-13 16:10:12,353 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:10:12,353 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:10:12,354 - app - INFO - ======================================================================
+2026-04-13 16:10:12,369 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:10:12,381 - app - INFO - Hauptrouten registriert
+2026-04-13 16:10:12,389 - app - INFO - Error Handler registriert
+2026-04-13 16:10:12,396 - app - INFO - Logging-System initialisiert
+2026-04-13 16:10:12,397 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:10:12,397 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:10:12,397 - app - INFO - ======================================================================
+2026-04-13 16:10:12,397 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:10:12,397 - app - INFO - ======================================================================
+2026-04-13 16:10:12,397 - app - INFO -   Umgebung: development
+2026-04-13 16:10:12,397 - app - INFO -   Debug: True
+2026-04-13 16:10:12,397 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:10:12,397 - app - INFO -   Port: 5000
+2026-04-13 16:10:12,398 - app - INFO - ======================================================================
+2026-04-13 16:10:12,396 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:10:12,406 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:10:12,405 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:10:12,410 - app - INFO - Hauptrouten registriert
+2026-04-13 16:10:12,410 - app - INFO - Error Handler registriert
+2026-04-13 16:10:12,410 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:10:12,411 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:12:45,173 - app - INFO - Hauptseite aufgerufen
+2026-04-13 16:12:46,082 - app - INFO - Hauptseite aufgerufen
+2026-04-13 16:13:16,390 - app - INFO - Logging-System initialisiert
+2026-04-13 16:13:16,394 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:13:16,396 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:13:16,398 - app - INFO - ======================================================================
+2026-04-13 16:13:16,398 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:13:16,399 - app - INFO - ======================================================================
+2026-04-13 16:13:16,399 - app - INFO -   Umgebung: development
+2026-04-13 16:13:16,400 - app - INFO -   Debug: True
+2026-04-13 16:13:16,400 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:13:16,401 - app - INFO -   Port: 5000
+2026-04-13 16:13:16,401 - app - INFO - ======================================================================
+2026-04-13 16:13:16,407 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:13:16,413 - app - INFO - Hauptrouten registriert
+2026-04-13 16:13:16,415 - app - INFO - Error Handler registriert
+2026-04-13 16:13:16,415 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:13:16,416 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:13:18,450 - app - INFO - Logging-System initialisiert
+2026-04-13 16:13:18,451 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:13:18,451 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:13:18,452 - app - INFO - ======================================================================
+2026-04-13 16:13:18,452 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:13:18,453 - app - INFO - ======================================================================
+2026-04-13 16:13:18,453 - app - INFO -   Umgebung: development
+2026-04-13 16:13:18,454 - app - INFO -   Debug: True
+2026-04-13 16:13:18,455 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:13:18,455 - app - INFO -   Port: 5000
+2026-04-13 16:13:18,455 - app - INFO - ======================================================================
+2026-04-13 16:13:18,459 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:13:18,462 - app - INFO - Hauptrouten registriert
+2026-04-13 16:13:18,463 - app - INFO - Error Handler registriert
+2026-04-13 16:13:18,463 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:13:18,464 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:14:53,274 - app - INFO - Logging-System initialisiert
+2026-04-13 16:14:53,275 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:14:53,275 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:14:53,275 - app - INFO - ======================================================================
+2026-04-13 16:14:53,276 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:14:53,276 - app - INFO - ======================================================================
+2026-04-13 16:14:53,276 - app - INFO -   Umgebung: development
+2026-04-13 16:14:53,277 - app - INFO -   Debug: True
+2026-04-13 16:14:53,277 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:14:53,277 - app - INFO -   Port: 5000
+2026-04-13 16:14:53,277 - app - INFO - ======================================================================
+2026-04-13 16:14:53,281 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:14:53,284 - app - INFO - Hauptrouten registriert
+2026-04-13 16:14:53,285 - app - INFO - Error Handler registriert
+2026-04-13 16:14:53,285 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:14:53,285 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:14:53,383 - app - INFO - Logging-System initialisiert
+2026-04-13 16:14:53,384 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:14:53,384 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:14:53,384 - app - INFO - ======================================================================
+2026-04-13 16:14:53,384 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:14:53,384 - app - INFO - ======================================================================
+2026-04-13 16:14:53,384 - app - INFO -   Umgebung: development
+2026-04-13 16:14:53,385 - app - INFO -   Debug: True
+2026-04-13 16:14:53,385 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:14:53,385 - app - INFO -   Port: 5000
+2026-04-13 16:14:53,385 - app - INFO - ======================================================================
+2026-04-13 16:14:53,390 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:14:53,394 - app - INFO - Hauptrouten registriert
+2026-04-13 16:14:53,394 - app - INFO - Error Handler registriert
+2026-04-13 16:14:53,395 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:14:53,395 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:14:54,316 - app - INFO - Logging-System initialisiert
+2026-04-13 16:14:54,316 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:14:54,316 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:14:54,316 - app - INFO - ======================================================================
+2026-04-13 16:14:54,316 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:14:54,316 - app - INFO - ======================================================================
+2026-04-13 16:14:54,316 - app - INFO -   Umgebung: development
+2026-04-13 16:14:54,316 - app - INFO -   Debug: True
+2026-04-13 16:14:54,317 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:14:54,317 - app - INFO -   Port: 5000
+2026-04-13 16:14:54,317 - app - INFO - ======================================================================
+2026-04-13 16:14:54,320 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:14:54,322 - app - INFO - Hauptrouten registriert
+2026-04-13 16:14:54,323 - app - INFO - Error Handler registriert
+2026-04-13 16:14:54,323 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:14:54,323 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:15:05,921 - app - INFO - Hauptseite aufgerufen
+2026-04-13 16:15:35,682 - app - INFO - Hauptseite aufgerufen
+2026-04-13 16:25:39,115 - app - INFO - Logging-System initialisiert
+2026-04-13 16:25:39,115 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:25:39,115 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:25:39,115 - app - INFO - ======================================================================
+2026-04-13 16:25:39,115 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:25:39,116 - app - INFO - ======================================================================
+2026-04-13 16:25:39,116 - app - INFO -   Umgebung: development
+2026-04-13 16:25:39,116 - app - INFO -   Debug: True
+2026-04-13 16:25:39,116 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:25:39,116 - app - INFO -   Port: 5000
+2026-04-13 16:25:39,116 - app - INFO - ======================================================================
+2026-04-13 16:25:39,119 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:25:39,121 - app - INFO - Hauptrouten registriert
+2026-04-13 16:25:39,121 - app - INFO - Error Handler registriert
+2026-04-13 16:25:39,121 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:25:39,121 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:25:39,412 - app - INFO - Logging-System initialisiert
+2026-04-13 16:25:39,427 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:25:39,443 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:25:39,445 - app - INFO - ======================================================================
+2026-04-13 16:25:39,446 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:25:39,446 - app - INFO - ======================================================================
+2026-04-13 16:25:39,447 - app - INFO -   Umgebung: development
+2026-04-13 16:25:39,450 - app - INFO -   Debug: True
+2026-04-13 16:25:39,457 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:25:39,457 - app - INFO -   Port: 5000
+2026-04-13 16:25:39,458 - app - INFO - ======================================================================
+2026-04-13 16:25:39,461 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:25:39,462 - app - INFO - Hauptrouten registriert
+2026-04-13 16:25:39,463 - app - INFO - Error Handler registriert
+2026-04-13 16:25:39,463 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:25:39,464 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:25:48,807 - app - INFO - Logging-System initialisiert
+2026-04-13 16:25:48,807 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:25:48,807 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:25:48,808 - app - INFO - ======================================================================
+2026-04-13 16:25:48,808 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:25:48,808 - app - INFO - ======================================================================
+2026-04-13 16:25:48,808 - app - INFO -   Umgebung: development
+2026-04-13 16:25:48,808 - app - INFO -   Debug: True
+2026-04-13 16:25:48,808 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:25:48,809 - app - INFO -   Port: 5000
+2026-04-13 16:25:48,809 - app - INFO - ======================================================================
+2026-04-13 16:25:48,812 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:25:48,813 - app - INFO - Hauptrouten registriert
+2026-04-13 16:25:48,814 - app - INFO - Error Handler registriert
+2026-04-13 16:25:48,814 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:25:48,815 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:26:16,222 - app - INFO - Logging-System initialisiert
+2026-04-13 16:26:16,222 - app - INFO - Log-Level: DEBUG
+2026-04-13 16:26:16,222 - app - INFO - Log-Datei: logs/dashboard.log
+2026-04-13 16:26:16,223 - app - INFO - ======================================================================
+2026-04-13 16:26:16,223 - app - INFO -   Network Operations Dashboard wird gestartet...
+2026-04-13 16:26:16,223 - app - INFO - ======================================================================
+2026-04-13 16:26:16,223 - app - INFO -   Umgebung: development
+2026-04-13 16:26:16,223 - app - INFO -   Debug: True
+2026-04-13 16:26:16,224 - app - INFO -   Host: 0.0.0.0
+2026-04-13 16:26:16,224 - app - INFO -   Port: 5000
+2026-04-13 16:26:16,224 - app - INFO - ======================================================================
+2026-04-13 16:26:16,227 - app - INFO - API-Blueprint registriert unter /api/
+2026-04-13 16:26:16,229 - app - INFO - Hauptrouten registriert
+2026-04-13 16:26:16,229 - app - INFO - Error Handler registriert
+2026-04-13 16:26:16,230 - app - INFO - Kontext-Prozessoren registriert
+2026-04-13 16:26:16,230 - app - INFO - Flask-Anwendung erfolgreich erstellt und konfiguriert
+2026-04-13 16:26:42,166 - app - INFO - Hauptseite aufgerufen
+2026-04-13 16:26:55,124 - app - INFO - Hauptseite aufgerufen
+2026-04-13 16:33:47,628 - app - INFO - Text-Dashboard aufgerufen

@@ -1,0 +1,597 @@
+/*
+================================================================================
+ KARTEN-STYLES - Network Operations Dashboard
+================================================================================
+ Datei:         static/css/map.css
+ Beschreibung:  Styles für die Leaflet-Karte, benutzerdefinierte Marker,
+                Karten-Toolbar, Legende und Popup-Fenster.
+                Enthält den pulsierenden Glow-Effekt für Online-Marker.
+ Autor:         Network Dashboard Team
+ Erstellt:      2026-04-10
+ Version:       1.0.0
+================================================================================
+*/
+
+/* ============================================================================
+   KARTEN-WRAPPER
+   ============================================================================ */
+
+.map-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ============================================================================
+   KARTEN-TOOLBAR
+   ============================================================================ */
+
+.map-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-base);
+    background: var(--color-glass);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    z-index: var(--z-card);
+    position: relative;
+}
+
+.map-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.map-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.map-title i {
+    color: var(--color-accent-primary);
+    font-size: 14px;
+}
+
+.map-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.map-btn:hover {
+    background: var(--color-bg-elevated);
+    border-color: var(--color-border-hover);
+    color: var(--color-text-primary);
+    transform: translateY(-1px);
+}
+
+.map-btn-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.map-btn-dot.online {
+    background: var(--color-online);
+    box-shadow: 0 0 4px var(--color-online-glow);
+}
+
+.map-btn-dot.offline {
+    background: var(--color-offline);
+}
+
+
+/* ============================================================================
+   KARTEN-CONTAINER
+   ============================================================================ */
+
+.map-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    background: var(--color-bg-primary);
+    z-index: var(--z-base);
+}
+
+/* Leaflet-Kontrollen anpassen */
+.leaflet-control-zoom {
+    border: none !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.leaflet-control-zoom a {
+    background: var(--color-bg-card) !important;
+    color: var(--color-text-primary) !important;
+    border: 1px solid var(--color-border) !important;
+    width: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    font-size: 16px !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background: var(--color-bg-elevated) !important;
+    color: var(--color-accent-primary) !important;
+}
+
+.leaflet-control-zoom-in {
+    border-radius: var(--radius-md) var(--radius-md) 0 0 !important;
+}
+
+.leaflet-control-zoom-out {
+    border-radius: 0 0 var(--radius-md) var(--radius-md) !important;
+    border-top: none !important;
+}
+
+/* Attribution */
+.leaflet-control-attribution {
+    background: var(--color-glass) !important;
+    color: var(--color-text-muted) !important;
+    font-size: 10px !important;
+    padding: 2px 8px !important;
+    border-radius: var(--radius-sm) 0 0 0 !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.leaflet-control-attribution a {
+    color: var(--color-text-tertiary) !important;
+}
+
+
+/* ============================================================================
+   BENUTZERDEFINIERTE KARTEN-MARKER
+   ============================================================================ */
+
+/* --- Basis-Marker-Container --- */
+.custom-marker {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* --- Marker-Pin (Hauptelement) --- */
+.marker-pin {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 3;
+    transition: transform var(--transition-base);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+.custom-marker:hover .marker-pin {
+    transform: scale(1.15);
+}
+
+/* --- Online-Marker (Frankfurt - Grün) --- */
+.marker-online .marker-pin {
+    background: radial-gradient(circle at 35% 35%, #33ffaa, #00cc66);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.marker-online .marker-icon {
+    color: #003d20;
+    font-size: 14px;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+}
+
+/* --- Offline-Marker (Wien - Rot) --- */
+.marker-offline .marker-pin {
+    background: radial-gradient(circle at 35% 35%, #ff6677, #cc2233);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.marker-offline .marker-icon {
+    color: #3d0000;
+    font-size: 14px;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+}
+
+/* --- Glow-Effekt für Online-Marker --- */
+.marker-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.marker-glow-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid var(--color-online);
+    opacity: 0;
+}
+
+.marker-glow-ring-1 {
+    width: 36px;
+    height: 36px;
+    animation: markerGlowPulse 2.5s ease-out infinite;
+}
+
+.marker-glow-ring-2 {
+    width: 36px;
+    height: 36px;
+    animation: markerGlowPulse 2.5s ease-out infinite 0.8s;
+}
+
+.marker-glow-ring-3 {
+    width: 36px;
+    height: 36px;
+    animation: markerGlowPulse 2.5s ease-out infinite 1.6s;
+}
+
+.marker-glow-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--color-online-glow) 0%, transparent 70%);
+    animation: markerGlowCore 2s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* --- Marker-Label (Beschriftung) --- */
+.marker-label {
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 3px 10px;
+    border-radius: var(--radius-md);
+    font-size: 11px;
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-primary);
+    letter-spacing: 0.03em;
+    z-index: 4;
+    pointer-events: none;
+    text-shadow: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.marker-online .marker-label {
+    background: rgba(0, 40, 20, 0.9);
+    color: var(--color-online);
+    border: 1px solid var(--color-online-border);
+}
+
+.marker-offline .marker-label {
+    background: rgba(40, 0, 0, 0.9);
+    color: var(--color-offline);
+    border: 1px solid var(--color-offline-border);
+}
+
+/* --- Marker-Status-Punkt --- */
+.marker-status-dot {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 5;
+    border: 2px solid var(--color-bg-primary);
+}
+
+.marker-online .marker-status-dot {
+    background: var(--color-online);
+    box-shadow: 0 0 8px var(--color-online-glow);
+}
+
+.marker-offline .marker-status-dot {
+    background: var(--color-offline);
+}
+
+
+/* ============================================================================
+   GLOW-ANIMATIONEN
+   ============================================================================ */
+
+@keyframes markerGlowPulse {
+    0% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3);
+    }
+}
+
+@keyframes markerGlowCore {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+
+/* ============================================================================
+   LEAFLET POPUPS (Angepasst)
+   ============================================================================ */
+
+.leaflet-popup-content-wrapper {
+    background: var(--color-bg-card) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-xl) !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.leaflet-popup-content {
+    margin: 0 !important;
+    min-width: 260px;
+}
+
+.leaflet-popup-tip {
+    background: var(--color-bg-card) !important;
+    border: 1px solid var(--color-border) !important;
+    box-shadow: none !important;
+}
+
+.leaflet-popup-close-button {
+    color: var(--color-text-tertiary) !important;
+    font-size: 18px !important;
+    width: 28px !important;
+    height: 28px !important;
+    padding: 0 !important;
+    right: 8px !important;
+    top: 8px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.leaflet-popup-close-button:hover {
+    color: var(--color-text-primary) !important;
+}
+
+/* --- Popup Inhalt --- */
+.popup-content {
+    padding: 0;
+}
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-base);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-glass-highlight);
+}
+
+.popup-status-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.popup-status-icon.online {
+    background: var(--color-online-bg);
+    color: var(--color-online);
+    border: 1px solid var(--color-online-border);
+}
+
+.popup-status-icon.offline {
+    background: var(--color-offline-bg);
+    color: var(--color-offline);
+    border: 1px solid var(--color-offline-border);
+}
+
+.popup-title-section {
+    flex: 1;
+    min-width: 0;
+}
+
+.popup-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.popup-subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    margin: 0;
+}
+
+.popup-body {
+    padding: var(--space-base);
+}
+
+.popup-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+}
+
+.popup-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.popup-info-label {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: var(--font-weight-semibold);
+}
+
+.popup-info-value {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+.popup-footer {
+    padding: var(--space-sm) var(--space-base);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.popup-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.popup-btn:hover {
+    background: var(--color-accent-primary);
+    color: white;
+    border-color: var(--color-accent-primary);
+}
+
+
+/* ============================================================================
+   KARTEN-LEGENDE
+   ============================================================================ */
+
+.map-legend {
+    position: absolute;
+    bottom: 30px;
+    left: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-md);
+    z-index: var(--z-card);
+    box-shadow: var(--shadow-md);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.legend-dot-online {
+    background: var(--color-online);
+    box-shadow: 0 0 6px var(--color-online-glow);
+}
+
+.legend-dot-online .legend-dot-pulse {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-online);
+    opacity: 0;
+    animation: legendPulse 2s ease-in-out infinite;
+}
+
+.legend-dot-offline {
+    background: var(--color-offline);
+}
+
+.legend-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+@keyframes legendPulse {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0; transform: scale(2); }
+    100% { opacity: 0; transform: scale(2); }
+}
+
+
+/* ============================================================================
+   VERBINDUNGSLINIE ZWISCHEN STANDORTEN
+   ============================================================================ */
+
+.leaflet-connection-line {
+    stroke: var(--color-text-muted);
+    stroke-width: 1.5;
+    stroke-dasharray: 8, 6;
+    fill: none;
+    opacity: 0.4;
+}
